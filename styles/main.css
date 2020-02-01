@@ -4,9 +4,10 @@ body {
     image-rendering: pixelated;
 }
 
+
 @font-face {
-    font-family: "MS-Sans";
-    src: url("../assets/font/MS-Sans-Serif.ttf");
+        font-family: "MS-Sans";
+        src: url("../assets/font/MS-Sans-Serif.ttf");
 }
 
 .window {
@@ -70,7 +71,6 @@ body {
 
 #messagesContainer {
     overflow:hidden;
-    padding:2vh 2vw;
     font-family: Arial, Helvetica, sans-serif;
     background: rgb(196, 189, 189);
 }
@@ -81,5 +81,12 @@ body {
 
 .group {
 
+
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 75vw auto;
+    grid-column-gap: 2vw;
 
 }
