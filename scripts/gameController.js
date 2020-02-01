@@ -14,6 +14,7 @@ $(document).ready(() => {
     // testing this function
     updateRAM(-4);
     Prism.highlightAll();
+    $(".window").draggable({ handle: ".winHeader" });
 })
 
 const createGameScreen = function () {
@@ -28,11 +29,12 @@ const createGameScreen = function () {
     }, 100000, "linear");
 }
 
-var createMessagePane = function() {
+var createMessagePane = function () {
     // initial email box 
-    messagesContainer.append(createMessage("email", startEmail));
+    // messagesContainer.append(createMessage("email", startEmail));
 }
 
-var createStatsContainer = function(){
+var createStatsContainer = function () {
     statsContainer.append(createRAM());
 }
+

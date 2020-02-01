@@ -1,6 +1,6 @@
 body {
     background: #55aaaa;
-    padding: 4px;
+    padding: 16px;
     image-rendering: pixelated;
 }
 
@@ -18,44 +18,88 @@ body {
     overflow: hidden;
 }
 
+@font-face {
+        font-family: "MS-Sans";
+        src: url("../assets/font/MS-Sans-Serif.ttf");
+}
+
 .window {
-    background-color: #beb6c3;
+    overflow: hidden;
+    background-color: #c3c7cb;
     border: 4px solid transparent;
-    border-image: url(../assets/ui/win_border.png) 4 round;
+    border-image: url(../assets/ui/win_border.png) 4 stretch;
+}
+
+.winInner {
+    overflow: hidden;
+    position: relative;
+    background-color: #fff;
+    border: 2px solid transparent;
+    border-image: url(../assets/ui/win_inner_border.png) 2 stretch;
 }
 
 .winHeader {
-    z-index: 99999;
-    position: absolute;
     color: white;
     background: #0000aa;
-    display: block;
-    height: 18px;
+    font-family: "MS-Sans";
+    font-size: 10px;
     line-height: 18px;
+    letter-spacing: 1.5px;
+    text-shadow: 1px 0 white;
+    
+    height: 18px;
     padding-left: 2px;
     padding-right: 2px;
-    width: calc(100% - 16px);
-    font-family: "VT323";
-    font-size: 15px;
+    margin-bottom: 1px;
+    position: relative;
 }
 
 .winHeader * {
     display: inline-block;
     position: relative;
-    vertical-align: middle;
+    vertical-align: text-top;
     margin-top: -2px;
 }
 
-.winButt {
+.winHeaderButt {
     margin-top: 2px;
     float: right;
 }
 
+.winMenu {
+    color: black;
+    font-family: "MS-Sans";
+    line-height: 19px;
+    font-size: 0;
+    
+    height: 18px;
+    margin-bottom: 1px;
+    position: relative;
+    overflow: hidden;
+
+}
+
+.winMenuButt {
+    font-size: 10px;
+    display: inline-block;
+    margin: 0 4px;
+    padding: 0 4px;
+}
+
+#gameContainer {
+    width: 600px;
+    overflow: hidden;
+}
+
+#gameContainer > #codeWrapper {
+    width: 100%;
+    padding: 0;
+    max-height: 400px;
+    overflow: hidden;
+}
+
 #messagesContainer {
     overflow:hidden;
-    padding:2vh 2vw;
-    font-family: Arial, Helvetica, sans-serif;
-    background: rgb(196, 189, 189);
 }
 
 .email {
@@ -70,4 +114,11 @@ body {
 .stats{
     display: flex;
     align-items: center;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 75vw auto;
+    grid-column-gap: 2vw;
+
 }
