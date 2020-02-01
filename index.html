@@ -1,33 +1,32 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <title>Debugger</title>
+        <script src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+        <script src="lib/prism/prism.js"></script>
+        <script src="code_files/level1.js"></script>
+        <script src="scripts/gameController.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Sigmar+One&display=swap" rel="stylesheet">
+        <link href="styles/reset.css" rel="stylesheet" />
+        <link href="lib/prism/prism.css" rel="stylesheet" />
+        <link href="styles/main.css" rel="stylesheet" />
+    </head>
 
-<head>
-    <title>Debugger</title>
-    <script src="https://code.jquery.com/jquery-3.3.1.js"
-        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-    <script src="lib/prism/prism.js"></script>
-
-    <script src="code_files/level1.js"></script>
-
-    <script src="scripts/gameController.js"></script>
-</head>
-
-<body>
-    <link href="lib/prism/prism.css" rel="stylesheet" />
-    <link href="styles/main.css" rel="stylesheet" />
-
-    <div id="rootContainer">
-        <div id="gameContainer" class="window">
-            <h1>Debuggin'</h1>
-            <pre><code id="code" class="language-javascript"></code></pre>
-            <div id="bugs"></div>
+    <body>
+        <div id="rootContainer">
+            <div id="gameContainer" class="window">
+                <div class="winHeader">
+                    <img src="assets/ui/win_trash_16.png">
+                    Debuggin'
+                </div>
+                <pre><code id="code" class="language-javascript"></code></pre>
+                <div id="bugs"></div>
+            </div>
+            <div id="messagesContainer"></div>
+            <div id="statsContainer"></div>
+            <div id="shopPopUp"></div>
         </div>
-        <div id="messagesContainer"></div>
-        <div id="statsContainer"></div>
-        <div id="shopPopUp"></div>
-        
-    </div>
-    <div id="taskbarContainer"></div>
-</body>
-
+        <div id="taskbarContainer"></div>
+    </body>
 </html>
