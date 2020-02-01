@@ -1,3 +1,4 @@
+const level1 = `
 /*!
  * express
  * Copyright(c) 2009-2013 TJ Holowaychuk
@@ -175,7 +176,7 @@ app.handle = function handle(req, res, callback) {
 };
 
 /**
- * Proxy `Router#use()` to add middleware to the app router.
+ * Proxy to add middleware to the app router.
  * See Router#use() documentation for details.
  *
  * If the _fn_ parameter is an express app, then it will be
@@ -241,10 +242,7 @@ app.use = function use(fn) {
   return this;
 };
 
-/**
- * Proxy to the app `Router#route()`
- * Returns a new `Route` instance for the _path_.
- *
+/*
  * Routes are isolated middleware stacks for specific paths.
  * See the Route api docs for details.
  *
@@ -274,7 +272,7 @@ app.engine = function engine(ext, fn) {
 };
 
 /**
- * Proxy to `Router#param()` with one added api feature. The _name_ parameter
+ * Proxy to  with one added api feature. The _name_ parameter
  * can be an array of names.
  *
  * See the Router#param() docs for more details.
@@ -347,7 +345,6 @@ app.disabled = function disabled(setting) {
 };
 
 /**
- * Enable `setting`.
  *
  * @param {String} setting
  * @return {app} for chaining
@@ -359,7 +356,6 @@ app.enable = function enable(setting) {
 };
 
 /**
- * Disable `setting`.
  *
  * @param {String} setting
  * @return {app} for chaining
@@ -370,9 +366,7 @@ app.disable = function disable(setting) {
   return this.set(setting, false);
 };
 
-/**
- * Delegate `.VERB(...)` calls to `router.VERB(...)`.
- */
+
 
 methods.forEach(function(method){
   app[method] = function(path){
@@ -390,7 +384,7 @@ methods.forEach(function(method){
 });
 
 /**
- * Special-cased "all" method, applying the given route `path`,
+ * Special-cased "all" method, applying the given route,
  * middleware, and callback to _every_ HTTP method.
  *
  * @param {String} path
@@ -510,3 +504,4 @@ function tryRender(view, options, callback) {
     callback(err);
   }
 }
+`

@@ -3,14 +3,22 @@
 
 <head>
     <title>Debugger</title>
-    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <link href="lib/prism/prism.css" rel="stylesheet" />
+    <script src="lib/prism/prism.js"></script>
+
+    <script src="code_files/level1.js"></script>
+
     <script src="scripts/gameController.js"></script>
 </head>
 
 <body>
     <div id="rootContainer">
-        <div id="gameContainer"></div>
+        <div id="gameContainer">
+            <pre><code id="code" class="language-js"></code></pre>
+            <div id="bugs"></div>
+        </div>
         <div id="messagesContainer"></div>
         <div id="statsContainer"></div>
         <div id="shopPopUp"></div>

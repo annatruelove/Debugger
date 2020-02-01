@@ -1,8 +1,21 @@
 var rootContainer;
+var gameContainer;
 var messagesContainer;
 var statsContainer;
 var shopPopUp;
 
-// messagesContainer"></div>
-// <div id="statsContainer"></div>
-// <div id="shopPopUp"></div>
+$(document).ready(() => {
+    rootContainer = $('#rootContainer');
+    createGameScreen();
+})
+
+const createGameScreen = function () {
+    gameContainer = $('#gameContainer');
+    let codeContainer = $('#code');
+    codeContainer.append(level1);
+    var animationOffset = gameContainer.height() - codeContainer.height();
+
+    codeContainer.animate({
+        "marginTop": animationOffset + "px"
+    }, "slow");
+}
