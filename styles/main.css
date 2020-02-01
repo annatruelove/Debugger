@@ -18,11 +18,14 @@
 }
 
 #messagesContainer {
-    
+    overflow:hidden;
+    padding:2vh 2vw;
+    font-family: Arial, Helvetica, sans-serif;
+    background: rgb(196, 189, 189);
 }
 
 .email {
-
+    
 }
 
 .group {

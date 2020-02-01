@@ -1,5 +1,4 @@
 
-// TODO should be called from root controller 
 var populateMessage = function(performance, gamestatus) {
     // access messageBank 
     if (performance === "good") {
