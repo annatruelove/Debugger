@@ -1,46 +1,71 @@
 body {
     background: #55aaaa;
-    padding: 4px;
+    padding: 16px;
     image-rendering: pixelated;
 }
 
-#gameContainer {
-    height: 60vh;
-    /* padding: 4vh 4vw; */
-    overflow: hidden;
+@font-face {
+    font-family: "MS-Sans";
+    src: url("../assets/font/MS-Sans-Serif.ttf");
 }
 
 .window {
     background-color: #beb6c3;
     border: 4px solid transparent;
-    border-image: url(../assets/ui/win_border.png) 4 round;
+    border-image: url(../assets/ui/win_border.png) 4 stretch;
+}
+
+.winInner {
+    background-color: #fff;
+    border: 2px solid transparent;
+    border-image: url(../assets/ui/win_inner_border.png) 2 stretch;
 }
 
 .winHeader {
     z-index: 99999;
-    position: absolute;
+    position: relative;
+    display: block;
+
     color: white;
     background: #0000aa;
-    display: block;
-    height: 18px;
+    font-family: "MS-Sans";
+    font-size: 10px;
     line-height: 18px;
+    letter-spacing: 1px;
+    text-shadow: 1px 0 white;
+    
+    height: 18px;
+    width: 100%;
     padding-left: 2px;
     padding-right: 2px;
-    width: calc(100% - 16px);
-    font-family: "VT323";
-    font-size: 15px;
 }
 
 .winHeader * {
     display: inline-block;
     position: relative;
-    vertical-align: middle;
+    vertical-align: text-top;
     margin-top: -2px;
 }
 
-.winButt {
+.winHeaderButt {
     margin-top: 2px;
     float: right;
+}
+
+
+
+#gameContainer {
+    /* padding: 4vh 4vw; */
+    overflow: hidden;
+}
+
+#gameContainer > #codeWrapper {
+    position: relative;
+    width: calc(100%);
+    background-color: red;
+    padding: 0;
+    max-height: 400px;
+    overflow: hidden;
 }
 
 #messagesContainer {
