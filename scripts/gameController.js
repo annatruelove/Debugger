@@ -7,6 +7,7 @@ var shopPopUp;
 $(document).ready(() => {
     rootContainer = $('#rootContainer');
     createGameScreen();
+    Prism.highlightAll();
 })
 
 const createGameScreen = function () {
@@ -14,8 +15,9 @@ const createGameScreen = function () {
     let codeContainer = $('#code');
     codeContainer.append(level1);
     var animationOffset = gameContainer.height() - codeContainer.height();
-
-    codeContainer.animate({
+    console.log(gameContainer.height());
+    console.log(codeContainer.height());
+    codeContainer.parent().animate({
         "marginTop": animationOffset + "px"
-    }, "slow");
+    }, 100000, "linear");
 }

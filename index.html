@@ -5,7 +5,6 @@
     <title>Debugger</title>
     <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-    <link href="lib/prism/prism.css" rel="stylesheet" />
     <script src="lib/prism/prism.js"></script>
 
     <script src="code_files/level1.js"></script>
@@ -14,14 +13,19 @@
 </head>
 
 <body>
+    <link href="lib/prism/prism.css" rel="stylesheet" />
+    <link href="styles/main.css" rel="stylesheet" />
+
     <div id="rootContainer">
-        <div id="gameContainer">
-            <pre><code id="code" class="language-js"></code></pre>
+        <div id="gameContainer" class="window">
+            <h1>Debuggin'</h1>
+            <pre><code id="code" class="language-javascript"></code></pre>
             <div id="bugs"></div>
         </div>
         <div id="messagesContainer"></div>
         <div id="statsContainer"></div>
         <div id="shopPopUp"></div>
+        
     </div>
     <div id="taskbarContainer"></div>
 </body>
