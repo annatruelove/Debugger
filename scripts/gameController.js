@@ -7,6 +7,7 @@ var shopPopUp;
 $(document).ready(() => {
     rootContainer = $('#rootContainer');
     createGameScreen();
+    createMessagePane();
     Prism.highlightAll();
 })
 
@@ -20,4 +21,9 @@ const createGameScreen = function () {
     codeContainer.parent().animate({
         "marginTop": animationOffset + "px"
     }, 100000, "linear");
+}
+
+var createMessagePane = function() {
+    // append an initial email box 
+    messagesContainer.append(createMessage("email", startEmail));
 }

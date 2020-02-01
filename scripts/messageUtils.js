@@ -1,19 +1,3 @@
-var rootContainer;
-var messagesContainer;
-var performance;
-
-$(document).ready(() => {
-    rootContainer = $('#rootContainer');
-    messagesContainer = $('#messagesContainer');
-    createMessagePane();
-})
-
-var createMessagePane = function() {
-    // append an initial email box 
-    messagesContainer.append(createMessage("email", startEmail));
-
-    //messagesContainer.append(populateMessage("good", "beginning"));
-}
 
 // TODO should be called from root controller 
 var populateMessage = function(performance, gamestatus) {
