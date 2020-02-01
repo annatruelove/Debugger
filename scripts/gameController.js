@@ -6,7 +6,7 @@ var shopPopUp;
 
 $(document).ready(() => {
     rootContainer = $('#rootContainer');
-    messagesContainer = $('#messagesContainer');
+    messagesContainer = $('#messagesContainer .winInner');
     createGameScreen();
     createMessagePane();
     Prism.highlightAll();
@@ -27,5 +27,5 @@ const createGameScreen = function () {
 
 var createMessagePane = function() {
     // initial email box 
-    // messagesContainer.append(createMessage("email", startEmail));
+    messagesContainer.append(createMessage("email", startEmail));
 }
