@@ -10,6 +10,7 @@ $(document).ready(() => {
     createGameScreen();
     createMessagePane();
     Prism.highlightAll();
+    $( ".window" ).draggable({ handle: ".winHeader" });
 })
 
 const createGameScreen = function () {
@@ -26,5 +27,5 @@ const createGameScreen = function () {
 
 var createMessagePane = function() {
     // initial email box 
-    messagesContainer.append(createMessage("email", startEmail));
+    // messagesContainer.append(createMessage("email", startEmail));
 }

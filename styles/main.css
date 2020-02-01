@@ -11,12 +11,15 @@ body {
 }
 
 .window {
+    overflow: hidden;
     background-color: #c3c7cb;
     border: 4px solid transparent;
     border-image: url(../assets/ui/win_border.png) 4 stretch;
 }
 
 .winInner {
+    overflow: hidden;
+    position: relative;
     background-color: #fff;
     border: 2px solid transparent;
     border-image: url(../assets/ui/win_inner_border.png) 2 stretch;
@@ -71,12 +74,11 @@ body {
 }
 
 #gameContainer {
-    /* padding: 4vh 4vw; */
+    width: 600px;
     overflow: hidden;
 }
 
 #gameContainer > #codeWrapper {
-    position: relative;
     width: 100%;
     padding: 0;
     max-height: 400px;
@@ -85,8 +87,6 @@ body {
 
 #messagesContainer {
     overflow:hidden;
-    font-family: Arial, Helvetica, sans-serif;
-    background: rgb(196, 189, 189);
 }
 
 .email {

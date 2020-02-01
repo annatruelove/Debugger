@@ -8,6 +8,10 @@
         <link href="styles/main.css" rel="stylesheet" />
         <script src="https://code.jquery.com/jquery-3.3.1.js"
             integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+        <script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+  crossorigin="anonymous"></script>
         <script src="lib/prism/prism.js"></script>
         <script src="code_files/level1.js"></script>
         <script src="scripts/gameController.js"></script>
@@ -43,7 +47,27 @@
                 <div id="bugs"></div>
             </div>
         </div>
-        <div id="messagesContainer" class="window"></div>
+        <div id="messagesContainer" class="window">
+            <div class="winHeader">
+                <img src="assets/ui/win_trash_16.png">
+                <h1>Heelmail</h1>
+                <img class="winHeaderButt" src="assets/ui/win_buttons.png">
+            </div>
+            <div class="winMenu">
+                <div class="winMenuButt">
+                    <u>N</u>ew
+                </div>
+                <div class="winMenuButt">
+                    <u>I</u>nbox
+                </div>
+                <div class="winMenuButt">
+                    <u>C</u>lutter
+                </div>
+                <div class="winMenuButt">
+                    <u>S</u>ent
+                </div>
+            </div>
+        </div>
         <div id="statsContainer"></div>
         <div id="shopPopUp"></div>
         
