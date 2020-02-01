@@ -7,8 +7,12 @@ var shopPopUp;
 $(document).ready(() => {
     rootContainer = $('#rootContainer');
     messagesContainer = $('#messagesContainer');
+    statsContainer = $('#statsContainer');
     createGameScreen();
     createMessagePane();
+    createStatsContainer();
+    // testing this function
+    updateRAM(-4);
     Prism.highlightAll();
 })
 
@@ -27,4 +31,8 @@ const createGameScreen = function () {
 var createMessagePane = function() {
     // initial email box 
     messagesContainer.append(createMessage("email", startEmail));
+}
+
+var createStatsContainer = function(){
+    statsContainer.append(createRAM());
 }
