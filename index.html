@@ -1,29 +1,34 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <title>Debugger</title>
+        <link href="https://fonts.googleapis.com/css?family=VT323&display=swap" rel="stylesheet">
+        <link href="styles/reset.css" rel="stylesheet" />
+        <link href="lib/prism/prism.css" rel="stylesheet" />
+        <link href="styles/main.css" rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+        <script src="lib/prism/prism.js"></script>
+        <script src="code_files/level1.js"></script>
+        <script src="scripts/gameController.js"></script>
+    </head>
 
-<head>
-    <title>Debugger</title>
-    <script src="https://code.jquery.com/jquery-3.3.1.js"
-        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-    <script src="lib/prism/prism.js"></script>
-
-    <script src="code_files/level1.js"></script>
-
-    <script src="scripts/messageBank.js"></script>
-    <script src="scripts/messageUtils.js"></script>
-    <script src="scripts/gameController.js"></script>
-</head>
-
-<body>
-    <link href="lib/prism/prism.css" rel="stylesheet" />
-    <link href="styles/main.css" rel="stylesheet" />
-
-    <div id="rootContainer">
-        <div id="gameContainer" class="window">
-            <h1>Debuggin'</h1>
-            <pre><code id="code" class="language-javascript"></code></pre>
-            <div id="bugs"></div>
+    <body>
+        <div id="rootContainer">
+            <div id="gameContainer" class="window">
+                <div class="winHeader">
+                    <img src="assets/ui/win_trash_16.png">
+                    <h1>Debuggin'</h1>
+                    <img class="winButt" src="assets/ui/win_buttons.png">
+                </div>
+                <pre><code id="code" class="language-javascript"></code></pre>
+                <div id="bugs"></div>
+            </div>
+            <div id="messagesContainer"></div>
+            <div id="statsContainer"></div>
+            <div id="shopPopUp"></div>
         </div>
+<<<<<<< HEAD
         <div id="messagesContainer" class="window"></div>
         <div id="statsContainer"></div>
         <div id="shopPopUp"></div>
@@ -32,4 +37,8 @@
     <div id="taskbarContainer"></div>
 </body>
 
+=======
+        <div id="taskbarContainer"></div>
+    </body>
+>>>>>>> 8ccceb4e7fbff303ec275dea680e4b4af6d47347
 </html>
