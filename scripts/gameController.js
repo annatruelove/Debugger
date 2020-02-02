@@ -48,7 +48,9 @@ $(document).ready(() => {
 
 const setLevel = function () {
     let codeContainer = $('#code');
+    codeContainer.empty();
     codeContainer.append(getScript(roundNumber));
+    codeContainer.css({"margin-top":"0px"});
     Prism.highlightAll();
 
 }
@@ -57,20 +59,34 @@ const setLevel = function () {
 const startGame = function () {
     let codeContainer = $('#code');
     var animationOffset = gameContainer.height() - codeContainer.height();
+    weGamin = true;
+    console.log("game started");
     codeContainer.parent().animate({
         "marginTop": animationOffset + "px"
-    }, 20000, "linear", function () {
+    }, 10000, "linear", function () { // set this to how long every level should eb
         endRound();
     });
     createBugs();
 }
 
-const endRound = function(){
+const endRound = function () {
     weGamin = false;
     $('.bug').stop();
     $('.bug').remove();
     $('#code').parent().stop();
     showShop();
+    if (roundNumber === 3) {
+        alert(" you won the game ? ");
+    }
+    roundNumber++;
+    setLevel();
+    $('#startDebuggingButton').unbind();
+    $('#startDebuggingButton').prop('disabled', false);
+    $('#startDebuggingButton').click(function () {
+        $('#startDebuggingButton').prop('disabled', true);
+        startGame()
+    })
+
 }
 
 var createMessagePane = function () {
@@ -84,9 +100,9 @@ var createStatsContainer = function () {
 }
 
 const createBugs = function () {
-    setInterval(function () {
+    const interval = setInterval(function () {
             if (weGamin === false) {
-                return;
+                clearInterval(interval);
             } else {
                 gameContainer.append(makeBug());
             }
@@ -106,7 +122,7 @@ var showShop = function () {
     shopPopUp.show();
 }
 
-var toggle = function(container, tab) {
+var toggle = function (container, tab) {
     if (container.is(":visible")) {
         container.hide();
         tab.attr("class", "miniProgram");
