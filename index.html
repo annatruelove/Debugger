@@ -1,107 +1,107 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Debugger</title>
-        <link href="https://fonts.googleapis.com/css?family=VT323&display=swap" rel="stylesheet">
-        <link href="styles/reset.css" rel="stylesheet" />
-        <link href="lib/prism/prism.css" rel="stylesheet" />
-        <link href="styles/main.css" rel="stylesheet" />
-        <script src="https://code.jquery.com/jquery-3.3.1.js"
-            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-        <script
-  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
-  crossorigin="anonymous"></script>
-        <script src="lib/prism/prism.js"></script>
-        <script src="code_files/level1.js"></script>
-        <script src="scripts/gameController.js"></script>
-        <script src="scripts/messageBank.js"></script>
-        <script src="scripts/messageUtils.js"></script>
-        <script src="scripts/statsUtils.js"></script>
-        <script src="scripts/shopUtils.js"></script>
+<head>
+    <title>Debugger</title>
+    <link href="https://fonts.googleapis.com/css?family=VT323&display=swap" rel="stylesheet">
+    <link href="styles/reset.css" rel="stylesheet" />
+    <link href="lib/prism/prism.css" rel="stylesheet" />
+    <link href="styles/main.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script 
+    src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" 
+        crossorigin="anonymous"></script>
+    <script src="lib/prism/prism.js"></script>
+    <script src="code_files/level1.js"></script>
+    <script src="scripts/gameController.js"></script>
+    <script src="scripts/messageBank.js"></script>
+    <script src="scripts/messageUtils.js"></script>
+    <script src="scripts/statsUtils.js"></script>
+    <script src="scripts/shopUtils.js"></script>
 
 
-    </head>
+</head>
 
-    <body>
-        <div id="rootContainer" class="grid">
-            <div id="gameContainer" class="window">
-                <div class="winHeader">
-                    <img src="assets/ui/win_code_16.png">
-                    <h1>Debuggin'</h1>
-                    <img class="winHeaderButt" src="assets/ui/win_buttons.png">
-                </div>
-                <div class="winMenu">
-                    <div class="winMenuButt">
-                        <u>F</u>ile
-                    </div>
-                    <div class="winMenuButt">
-                        <u>E</u>dit
-                    </div>
-                    <div class="winMenuButt">
-                        <u>H</u>elp
-                    </div>
-                </div>
-                <div id="codeWrapper" class="winInner">
-                    <pre>
-                        <code id="code" class="language-javascript"></code>
-                    </pre>
-                </div>
-                <div id="bugs"></div>
-            </div>
-        </div>
-        <div id="messagesContainer" class="window">
+<body>
+    <div id="rootContainer" class="grid">
+        <div id="gameContainer" class="window">
             <div class="winHeader">
-                <img src="assets/ui/win_mail_16.png">
-                <h1>Heelmail</h1>
+                <img src="assets/ui/win_code_16.png">
+                <h1>Debuggin'</h1>
                 <img class="winHeaderButt" src="assets/ui/win_buttons.png">
             </div>
             <div class="winMenu">
                 <div class="winMenuButt">
-                    <u>N</u>ew
+                    <u>F</u>ile
                 </div>
                 <div class="winMenuButt">
                     <u>E</u>dit
                 </div>
-            </div>
-            <div class="winTabSet">
-                <button id="inboxContentTab" class="winTab active" onclick="showMsgTab('#inboxContent')">
-                    Inbox
-                </button>
-                <button id="groupContentTab" class="winTab" onclick="showMsgTab('#groupContent')">
-                    Group Message
-                </button>
-            </div>
-            <div class="winTabMain">
-                <div class="winInner active" id="inboxContent">
-                </div>
-                <div class="winInner" id="groupContent">
-                    ## Prepend messages to #groupContent
+                <div class="winMenuButt">
+                    <u>H</u>elp
                 </div>
             </div>
+            <div id="codeWrapper" class="winInner">
+                <pre>
+                        <code id="code" class="language-javascript"></code>
+                    </pre>
+            </div>
+            <div id="bugs"></div>
         </div>
-        <div id="statsContainer" class="window">
-            
-            <div class="winHeader">
+    </div>
+    <div id="messagesContainer" class="window">
+        <div class="winHeader">
+            <img src="assets/ui/win_mail_16.png">
+            <h1>Heelmail</h1>
+            <img class="winHeaderButt" src="assets/ui/win_buttons.png">
+        </div>
+        <div class="winMenu">
+            <div class="winMenuButt">
+                <u>N</u>ew
+            </div>
+            <div class="winMenuButt">
+                <u>E</u>dit
+            </div>
+        </div>
+        <div class="winTabSet">
+            <button id="inboxContentTab" class="winTab active" onclick="showMsgTab('#inboxContent')">
+                Inbox
+            </button>
+            <button id="groupContentTab" class="winTab" onclick="showMsgTab('#groupContent')">
+                Group Message
+            </button>
+        </div>
+        <div class="winTabMain">
+            <div class="winInner active" id="inboxContent">
+            </div>
+            <div class="winInner" id="groupContent">
+                ## Prepend messages to #groupContent
+            </div>
+        </div>
+    </div>
+    <div id="statsContainer" class="window">
 
-                <img src="assets/ui/win_stats_16.png">
-                <h1>Stats</h1>
-                <img class="winHeaderButt" src="assets/ui/win_buttons.png">
-            </div>
-            <div id="statsContent" class="winInner">
-                
-            </div>
-        </div>
-        <div id="shopPopUp" class="window">
-            <div class="winHeader">
+        <div class="winHeader">
 
-                <img src="assets/ui/win_mail_16.png">
-                <h1>WinPopUp</h1>
-                <img class="winHeaderButt" src="assets/ui/win_buttons.png">
-            </div>
-            <div id="shopContent" class="winInner">
+            <img src="assets/ui/win_stats_16.png">
+            <h1>Stats</h1>
+            <img class="winHeaderButt" src="assets/ui/win_buttons.png">
         </div>
-        
+        <div id="statsContent" class="winInner">
+
+        </div>
+    </div>
+    <div id="shopPopUp" class="window">
+        <div class="winHeader">
+
+            <img src="assets/ui/win_mail_16.png">
+            <h1>WinPopUp</h1>
+            <img class="winHeaderButt" src="assets/ui/win_buttons.png">
+        </div>
+        <div id="shopContent" class="winInner">
+        </div>
+
     </div>
     <div id="taskbarContainer" class="window">
         <div id="wintask" class="windows-logo">
