@@ -19,6 +19,7 @@ $(document).ready(() => {
     shopPopUp = $('#shopPopUp');
     gameContainer = $('#gameContainer');
     loginPage = $('#loginPage');
+    loginButt = $('#loginButt');
     createGameScreen();
     createMessagePane();
     createStatsContainer();

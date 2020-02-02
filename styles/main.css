@@ -303,5 +303,25 @@ body {
     overflow: hidden;
     border: 4px solid transparent;
     border-image: url(../assets/ui/win_border.png) 4 stretch;
-    align-self: center;
+    position: absolute;
+    top: 150px;
+    left: 400px;
 } 
+
+.logon {
+    font-family: "MS-Sans";
+    font-size: 14px;
+}
+
+.logonButt {
+    font-family: "MS-Sans";
+    font-size: 14px;
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    background-color: #c3c7cb;
+    border: 4px solid transparent;
+    border-image: url(../assets/ui/win_border.png) 4 stretch;
+    width:70px;
+    height: 35px;
+
+}

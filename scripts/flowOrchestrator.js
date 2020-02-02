@@ -4,7 +4,7 @@ const runGame = function() {
 
 const startSequence = function() {
 
-    loginPage.click(function() {
+    loginButt.click(function() {
         loginPage.hide();
         messagesContainer.fadeIn();
     }); 
