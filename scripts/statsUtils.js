@@ -1,5 +1,5 @@
-var userRAM = 8;
-var userPts = 0;
+var userRAM = 6;
+var userPts = 10;
 
 var loseLife = function() {
     userRAM = userRAM - 2;
@@ -31,7 +31,7 @@ var updateRAM = function(gb){
         div.append("Memory Remaining: 6GB ");
         ramImg.src = "assets/stats/6GB.png"
         div.append(ramImg);
-    } else if (userRAM == 8){
+    } else if (userRAM >= 8){
         div.append("Memory Remaining: 8GB ");
         ramImg.src = "assets/stats/8GB.png"
         div.append(ramImg);
