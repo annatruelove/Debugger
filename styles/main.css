@@ -93,6 +93,11 @@ body {
     border-image: url(../assets/ui/win_tab_border.png) 2 stretch;
 }
 
+.winTab.active {
+    height: 22px;
+    z-index: 9999;
+}
+
 .winTabMain {
     margin: 0 4px 1px;
     padding: 4px;
