@@ -22,14 +22,15 @@ $(document).ready(() => {
 
     // this will be called when a game is over
     createShopContainer();
-    
+
     hideShop(); // use to hide shop
     //showShop(); // use to show shop
 
     Prism.highlightAll();
-    $(".window").draggable({ handle: ".winHeader" });
-    
-    runGame();
+    $(".window").draggable({
+        handle: ".winHeader"
+    });
+
 })
 
 const createGameScreen = function () {
@@ -40,7 +41,7 @@ const createGameScreen = function () {
     console.log(codeContainer.height());
     codeContainer.parent().animate({
         "marginTop": animationOffset + "px"
-    }, 45000, "linear", function(){
+    }, 45000, "linear", function () {
         weGamin = false;
     });
     createBugs();
@@ -56,15 +57,15 @@ var createStatsContainer = function () {
     statsContainerInner.append(updateScore(0));
 }
 
-const createBugs = function(){
+const createBugs = function () {
     setInterval(function () {
-        if (weGamin === true){
-            gameContainer.append(makeBug()); 
-        } else{
-            return;
-        }
-    },
-    500);
+            if (weGamin === true) {
+                gameContainer.append(makeBug());
+            } else {
+                return;
+            }
+        },
+        1000);
 
 }
 
@@ -72,10 +73,10 @@ var createShopContainer = function () {
     shopContainer.append(createShop());
 }
 
-var hideShop = function() {
+var hideShop = function () {
     shopPopUp.hide();
 }
 
-var showShop = function() {
+var showShop = function () {
     shopPopUp.show();
 }
