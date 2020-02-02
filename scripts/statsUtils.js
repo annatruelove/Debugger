@@ -44,7 +44,7 @@ var updateRAM = function (gb) {
     var div = $('<div></div>');
     var percent = Math.floor(userRAM / 8 * 100);
     var progressBar = $("<div id='memoryBar' class='winInner winBar'></div>");
-    progressBar.append("<div class='winBarInner'></div>" + percent + "%");
+    progressBar.append("<div style='width: " + percent + "%' class='winBarInner'></div>");
 
     div.append(progressBar);
 
@@ -57,8 +57,8 @@ var updateScore = function (newPts) {
     userPts += newPts;
     var div = $('<div></div>');
     var percent = Math.round(userRAM / 8);
-    var progressBar = "<div id='pointsBar' class='winInner winBar'><div class='winBarInner'></div></div>";
+    var progressBar = "<div id='pointsBar' class='winInner winBar'><div style='width: " + userPts + "px' class='winBarInner'></div></div>";
     div.append(progressBar);
-    div.append("<p>Bugs squashed: " + userPts + "</p>")
+    div.append("<p>Bugs squashed: " + (0.5 * userPts) + "</p>")
     return div;
 }
