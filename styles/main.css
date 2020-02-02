@@ -179,6 +179,7 @@ body {
     z-index: 1000;
     left: 20px;
     top: 80%;
+    background-color: #c3c7cb;
 }
 
 #shopPopUp {
@@ -200,6 +201,11 @@ body {
 .stats{
     display: flex;
     align-items: center;
+    background-color: #c3c7cb;
+    padding: 2px;
+    border-color: #c3c7cb;
+    border: 2px;
+    left: 2px;
 }
 
 .grid {
