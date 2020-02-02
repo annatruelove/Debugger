@@ -10,6 +10,7 @@ body {
 }
 
 .window {
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
     overflow: hidden;
     background-color: #c3c7cb;
     border: 4px solid transparent;
@@ -62,7 +63,6 @@ body {
     margin-bottom: 1px;
     position: relative;
     overflow: hidden;
-
 }
 
 .winMenuButt {
@@ -72,27 +72,64 @@ body {
     padding: 0 4px;
 }
 
+.winTabSet {
+    color: black;
+    font-family: "MS-Sans";
+    line-height: 15px;
+    font-size: 0;
+
+    height: 18px;
+    margin: 9px 10px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.winTab {
+    height: 18px;
+    font-size: 10px;
+    display: inline-block;
+    padding: 0 4px;
+    border: 2px solid transparent;
+    border-image: url(../assets/ui/win_tab_border.png) 2 stretch;
+}
+
+.winTabMain {
+    margin: 0 4px 1px;
+    padding: 4px;
+    border: 4px solid transparent;
+    border-image: url(../assets/ui/win_border.png) 4 stretch;
+}
+
 #gameContainer {
     width: 600px;
-    overflow: hidden;
 }
 
 #gameContainer > #codeWrapper {
     width: 100%;
     padding: 0;
     max-height: 400px;
-    overflow: hidden;
+    user-select: none;
 }
 
 #messagesContainer {
-    overflow:hidden;
+    width: 500px;
+    height: 300px;
+}
+
+#messageContent {
+    margin: -4px;
+    padding: 4px;
+    font-size: 14px;
+    line-height: 1.5;
+    font-family: "MS-Sans";
 }
 
 #statsContainer {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     font-size: xx-large;
-    padding: 50px 0;
+    width: 500px;
+    height: 300px;
 }
 
 .email {
