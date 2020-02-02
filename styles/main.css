@@ -127,7 +127,7 @@ body {
 }
 
 #gameContainer {
-    width: 600px;
+    width: 900px;
     top: 20px;
     left: 20px;
 }
@@ -135,7 +135,7 @@ body {
 #gameContainer > #codeWrapper {
     width: 100%;
     padding: 0;
-    max-height: 400px;
+    max-height: 500px;
     user-select: none;
 }
 
@@ -173,7 +173,7 @@ body {
     width: 500px;
     z-index: 1000;
     left: 20px;
-    top: 75%;
+    top: 80%;
 }
 
 #shopPopUp {
