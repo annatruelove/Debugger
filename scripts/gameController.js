@@ -4,6 +4,7 @@ var messagesContainerInbox;
 var messagesContainerGroup;
 var statsContainer;
 var shopPopUp;
+var bugs = []
 
 $(document).ready(() => {
     rootContainer = $('#rootContainer');
@@ -19,6 +20,7 @@ $(document).ready(() => {
 
     Prism.highlightAll();
     $(".window").draggable({ handle: ".winHeader" });
+    
 })
 
 const createGameScreen = function () {
@@ -30,7 +32,8 @@ const createGameScreen = function () {
     console.log(codeContainer.height());
     codeContainer.parent().animate({
         "marginTop": animationOffset + "px"
-    }, 100000, "linear");
+    }, 200000, "linear");
+    createBugs();
 }
 
 var createMessagePane = function () {
@@ -41,6 +44,10 @@ var createMessagePane = function () {
 var createStatsContainer = function () {
     statsContainer.append(updateRAM(0));
     statsContainer.append(updateScore(0));
+}
+
+const createBugs = function(){
+    gameContainer.append(makeBug()); 
 }
 
 var createShopContainer = function () {

@@ -1,6 +1,16 @@
 var userRAM = 6;
 var userPts = 10;
 
+var loseLife = function() {
+    userRAM = userRAM - 2;
+    return updateRAM(userRam);
+}
+
+var increaseScore = function(){
+    userPts = userPts + 1;
+    return updateScore(userPts);
+}
+
 // 8GB max, increments in 2GB, so 4 lives total
 var updateRAM = function(gb){
     userRAM += gb;
