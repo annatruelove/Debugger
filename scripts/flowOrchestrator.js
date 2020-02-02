@@ -54,5 +54,6 @@ const burnItAll = function () {
     toggle(gameContainer, codeTask);
     toggle(statsContainer, statsTask);
     toggle(messagesContainer, messagesTask);
+    $('#code').parent().stop();
 
 }
