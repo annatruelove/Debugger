@@ -1,7 +1,7 @@
 const makeBug = function(){
     var newBug = $('<img class ="bug" src="assets/sprites/beetle.gif"></img>');
     
-    newBug.css({top: 700, left: Math.floor(Math.random() * 536), position:'absolute'});
+    newBug.css({top: 700, left: Math.floor(Math.random() * 836), position:'absolute'});
     newBug.animate({
         top: '-60px'
     }, 5000,"linear", function(){
