@@ -7,6 +7,11 @@ body {
     background: #55aaaa;
     padding: 16px;
     image-rendering: pixelated;
+    background-position: top center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: 100% auto;
 }
 
 @font-face {
