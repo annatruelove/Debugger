@@ -48,5 +48,3 @@ const startSequence = function() {
         }); 
     })
 }
-
-// TODO game over 

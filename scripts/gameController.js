@@ -70,6 +70,7 @@ const endRound = function(){
     $('.bug').stop();
     $('.bug').remove();
     $('#code').parent().stop();
+    showShop();
 }
 
 var createMessagePane = function () {
