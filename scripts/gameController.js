@@ -83,7 +83,8 @@ const endRound = function (performance) {
     $('#code').parent().stop();
 
     if (roundNumber === 3) {
-        alert(" you won the game ? ");
+        calcPerformance();
+        populateMessage(performance, "endgame");
     }
     roundNumber++;
     setLevel();

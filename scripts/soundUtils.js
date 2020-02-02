@@ -1,5 +1,33 @@
 var playBackgroundMusic = function () {
-    var music = document.getElementById("background_music");
+    var music = document.getElementById("intro_music");
+
+    var promise = music.play();
+    if (promise !== undefined) {
+        promise.then(_ => {
+            music.play();
+        }).catch(error => {
+            console.log(error.name + " " + error.message);
+        });
+    }
+
+    playFullMusic();
+}
+
+var playFullMusic = function() {
+    var music = document.getElementById("full_music");
+
+    var promise = music.play();
+    if (promise !== undefined) {
+        promise.then(_ => {
+            music.play();
+        }).catch(error => {
+            console.log(error.name + " " + error.message);
+        });
+    }
+}
+
+var playFailureMusic = function() {
+    var music = document.getElementById("fail");
 
     var promise = music.play();
     if (promise !== undefined) {
@@ -43,6 +71,19 @@ var playFanSound = function() {
 
 var playPurchaseSound = function() {
     var music = document.getElementById("purchase");
+
+    var promise = music.play();
+    if (promise !== undefined) {
+        promise.then(_ => {
+            music.play();
+        }).catch(error => {
+            console.log(error.name + " " + error.message);
+        });
+    }
+}
+
+var playSplatSound = function() {
+    var music = document.getElementById("splat");
 
     var promise = music.play();
     if (promise !== undefined) {
