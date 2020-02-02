@@ -45,7 +45,7 @@ var updateRAM = function (gb) {
         div.append(ramImg);
     } else if (userRAM <= 0) {
         div.append("Memory Remaining: 0GB ");
-        ramImg.src = "assets/stats/2GB.png"
+        ramImg.src = "assets/stats/0GB.png"
         div.append(ramImg);
     }
 
