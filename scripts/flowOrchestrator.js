@@ -58,6 +58,19 @@ const burnItAll = function () {
     toggle(messagesContainer, messagesTask);
     $('#code').parent().stop();
 
-    $('#fired').show();
+    throwErrorMessages();
 
 }
+
+const throwErrorMessages = function() {  
+    for (let i = 0; i < 50; i++) {
+        $('body').delay(100).append('<img id="pic" src="assets/ui/win_error_window.png"></img>');
+       // document.getElementById('pic').style.top = numberRandomizer() + 'px';
+        //document.getElementById('pic').style.left = numberRandomizer() + 'px';
+    }
+}
+
+function numberRandomizer(){
+    var x = Math.floor((Math.random() * 100)); 
+    return x;
+  }

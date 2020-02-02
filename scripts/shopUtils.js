@@ -1,68 +1,14 @@
 var div = $('<div class="popUp"></div>');
 
-var createShop = function () {
-    startLightAnimation();
-    // Youre a winner text
-    div.append($('<br>'));
-
-    div.append('<text class="rainbow-text">Congratulations, You\'re Today\'s Lucky Winner!');
-    div.append($('<br>'));
-    div.append($('<br>'));
-
-    div.append("Use your points to purchase an upgrade below:");
-    div.append($('<br>'));
-    div.append($('<br>'));
-
-    // Buy more lives
-    var ramImg = new Image(50, 25);
-    ramImg.src = "assets/stats/8GB.png";
-    div.append(ramImg);
-
-    div.append("Buy More Lives: 50pts/life");
-    var input = document.createElement("INPUT");
-    input.setAttribute("type", "number");
-    input.setAttribute("class", "winInner");
-    div.append(input);
-
-    var livesButton = document.createElement("button")
-    var livesText = document.createTextNode("Purchase");
-    livesButton.onclick = function () {
-        buyLives(input.value)
-    };
-    livesButton.appendChild(livesText);
-    livesButton.setAttribute("class", "window");
-
-    div.append(livesButton);
-
-    div.append($('<br>'));
-    div.append($('<br>'));
-
-
-    // fly swatter
-    var swatImg = new Image(50, 50);
-    swatImg.src = "assets/sprites/swatter.png";
-    div.append(swatImg);
-
-    div.append("Upgrade radius with fly swatter for 10 pts");
-
-    var swatButton = document.createElement("button")
-    var swatText = document.createTextNode("Purchase");
-    // need to implement
-    swatButton.onclick = function () {
-        increaseRadius()
-    };
-    swatButton.appendChild(swatText);
-    swatButton.setAttribute("class", "window");
-
-
-    div.append(swatButton);
-
-
-    return div;
+function setUpShop() {
+    $("#swatterItem .shopImg").on("click", increaseRadius);
+    $("#sprayItem .shopImg").on("click", increaseRadius);
+    $("#livesItem .shopImg").on("click", null, 1, buyLives);
 }
 
 // create pop up div
-var buyLives = function (inputValue) {
+var buyLives = function (event) {
+    let inputValue = event.data;
     console.log("value: " + inputValue);
 
     if (userPts < inputValue) {
@@ -73,15 +19,13 @@ var buyLives = function (inputValue) {
         statsContainer.empty();
         statsContainer.append(updateRAM(0));
         statsContainer.append(updateScore(0));
-
     }
-
 }
 
 var increaseRadius = function () {
 
     //increase the radius
-
+    console.log("increasing radius");
     // subtract points
     if (userPts < 10) {
         div.append("Insufficient Funds");
