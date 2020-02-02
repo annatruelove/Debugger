@@ -52,8 +52,8 @@ const setLevel = function () {
     let codeContainer = $('#code');
     codeContainer.empty();
     codeContainer.append(getScript(roundNumber));
-    codeContainer.css({
-        "margin-top": "0px"
+    codeContainer.parent().css({
+        "marginTop": "0px"
     });
     Prism.highlightAll();
 
