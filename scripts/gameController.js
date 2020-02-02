@@ -21,17 +21,14 @@ $(document).ready(() => {
     shopPopUp = $('#shopPopUp');
     gameContainer = $('#gameContainer');
     loginPage = $('#loginPage')
-    createGameScreen();
     createMessagePane();
     createStatsContainer();
-
     // this will be called when a game is over
     createShopContainer();
 
     hideShop(); // use to hide shop
     //showShop(); // use to show shop
 
-    Prism.highlightAll();
     $(".window").draggable({
         handle: ".winHeader"
     });
@@ -44,6 +41,8 @@ $(document).ready(() => {
 const setLevel = function (round) {
     let codeContainer = $('#code');
     codeContainer.append(getScript(roundNumber));
+    Prism.highlightAll();
+
 }
 
 
