@@ -8,8 +8,8 @@ var loseLife = function () {
     if (userRAM == 0) {
         // GAME LOSE AREA
         // alert(" YOU LOSE BRUH LEAVEEEEE ");
-        if (userPts <= 10){
-            alert("insert fire here");
+        if (userPts < 50){
+            burnItAll();
             endRound();
         } else {
             endRound();
