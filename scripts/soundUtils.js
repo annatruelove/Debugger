@@ -9,13 +9,16 @@ var playBackgroundMusic = function () {
             console.log(error.name + " " + error.message);
         });
     }
-
-    playFullMusic();
 }
 
-var playFullMusic = function() {
+var playFullMusic = function () {
     var music = document.getElementById("full_music");
 
+    var audios = document.getElementsByTagName('audio');
+    for (var i = 0, len = audios.length; i < len; i++) {
+        audios[i].pause();
+    }
+
     var promise = music.play();
     if (promise !== undefined) {
         promise.then(_ => {
@@ -26,9 +29,14 @@ var playFullMusic = function() {
     }
 }
 
-var playFailureMusic = function() {
+var playFailureMusic = function () {
     var music = document.getElementById("fail");
 
+    var audios = document.getElementsByTagName('audio');
+    for (var i = 0, len = audios.length; i < len; i++) {
+        audios[i].pause();
+    }
+
     var promise = music.play();
     if (promise !== undefined) {
         promise.then(_ => {
@@ -39,11 +47,11 @@ var playFailureMusic = function() {
     }
 }
 
-var playEmail = function() {
+var playEmail = function () {
     var music = document.getElementById("email_notif");
     // add flashers
     var promise = music.play();
-    
+
     $("#messagesContainer").fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100)
 
     if (promise !== undefined) {
@@ -56,7 +64,7 @@ var playEmail = function() {
 
 }
 
-var playFanSound = function() {
+var playFanSound = function () {
     var music = document.getElementById("fans");
 
     var promise = music.play();
@@ -69,7 +77,7 @@ var playFanSound = function() {
     }
 }
 
-var playPurchaseSound = function() {
+var playPurchaseSound = function () {
     var music = document.getElementById("purchase");
 
     var promise = music.play();
@@ -82,7 +90,7 @@ var playPurchaseSound = function() {
     }
 }
 
-var playSplatSound = function() {
+var playSplatSound = function () {
     var music = document.getElementById("splat");
 
     var promise = music.play();

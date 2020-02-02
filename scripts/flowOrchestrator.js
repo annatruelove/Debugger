@@ -1,53 +1,53 @@
-const runGame = function() {
+const runGame = function () {
     startSequence();
 }
 
-const startSequence = function() {
+const startSequence = function () {
 
-    loginButt.click(function() {
+    loginButt.click(function () {
         loginPage.hide();
         $("#taskbarContainer").show();
         messagesContainer.fadeIn();
         playEmail();
-    }); 
+    });
     setLevel(1)
 
     messagesContainer.hide()
     gameContainer.hide();
     statsContainer.hide();
 
-    $('#startDebuggingButton').click(function(){
-        $('#startDebuggingButton').prop('disabled', true);   
+    $('#startDebuggingButton').click(function () {
+        $('#startDebuggingButton').prop('disabled', true);
         gameContainer.fadeIn(1000);
-        statsContainer.fadeIn(1000, function() {
+        statsContainer.fadeIn(1000, function () {
             gameContainer.append(makeFirstBug());
             statsTask.attr("class", "miniProgram clicked");
             codeTask.attr("class", "miniProgram clicked");
 
-            statsTask.click(function() {
+            statsTask.click(function () {
                 toggle(statsContainer, statsTask);
             })
 
-            $('#statsCloseButton').click(function() {
+            $('#statsCloseButton').click(function () {
                 toggle(statsContainer, statsTask);
             })
 
-            codeTask.click(function() {
+            codeTask.click(function () {
                 toggle(gameContainer, codeTask);
             })
 
-            $('#gameCloseButton').click(function() {
+            $('#gameCloseButton').click(function () {
                 toggle(gameContainer, codeTask);
             })
 
-            messagesTask.click(function() {
-                toggle(messagesContainer, messagesTask);
-            })  
-
-            $('#messageCloseButton').click(function() {
+            messagesTask.click(function () {
                 toggle(messagesContainer, messagesTask);
             })
-        }); 
+
+            $('#messageCloseButton').click(function () {
+                toggle(messagesContainer, messagesTask);
+            })
+        });
     })
 }
 
@@ -68,17 +68,17 @@ const burnItAll = function () {
 
 }
 
-const throwErrorMessages = function() { 
+const throwErrorMessages = function () {
     var w = window.innerWidth;
-    var h = window.innerHeight; 
+    var h = window.innerHeight;
 
-        var xOffset = Math.floor(Math.random() * w) + 1;
-        var yOffset = Math.floor(Math.random() * h) + 1;
-        $('body').append('<img class="endError" style="position: absolute; top: ' + xOffset + 'px; left: ' + yOffset + 'px;" src="assets/ui/win_error_windowww.png"></img>');
-    
+    var xOffset = Math.floor(Math.random() * w) + 1;
+    var yOffset = Math.floor(Math.random() * h) + 1;
+    $('body').append('<img class="endError" style="position: absolute; top: ' + xOffset + 'px; left: ' + yOffset + 'px;" src="assets/ui/win_error_windowww.png"></img>');
+    playFailureMusic()
 }
 
-function numberRandomizer(){
-    var x = Math.floor((Math.random() * 100)); 
+function numberRandomizer() {
+    var x = Math.floor((Math.random() * 100));
     return x;
-  }
+}
