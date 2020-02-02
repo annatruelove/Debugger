@@ -1,6 +1,7 @@
 var div = $('<div class="popUp"></div>');
 
 var createShop = function () {
+    startLightAnimation();
     // Youre a winner text
     div.append($('<br>'));
 
@@ -24,7 +25,9 @@ var createShop = function () {
 
     var livesButton = document.createElement("button")
     var livesText = document.createTextNode("Purchase");
-    livesButton.onclick = function () { buyLives(input.value) };
+    livesButton.onclick = function () {
+        buyLives(input.value)
+    };
     livesButton.appendChild(livesText);
 
     div.append(livesButton);
@@ -43,7 +46,9 @@ var createShop = function () {
     var swatButton = document.createElement("button")
     var swatText = document.createTextNode("Purchase");
     // need to implement
-    swatButton.onclick = function () { increaseRadius() };
+    swatButton.onclick = function () {
+        increaseRadius()
+    };
     swatButton.appendChild(swatText);
 
     div.append(swatButton);
@@ -81,4 +86,22 @@ var increaseRadius = function () {
         statsContainer.append(updateRAM(0));
         statsContainer.append(updateScore(-10));
     }
+}
+
+startLightAnimation = function () {
+    $('#shopPopUp').animate({
+        'border-image' : 'linear-gradient(to bottom right, #b827fc 100%, #2c90fc 75%, #b8fd33 50%, #fec837 25%, #fd1892 0%)'
+    }, "slow",function(){
+        startDarkAnimation();
+    });
+
+}
+
+startDarkAnimation = function () {
+    $('#shopPopUp').animate({
+        'border-image' : 'linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%)'
+    }, "fast",function(){
+        startLightAnimation();
+    });
+
 }
