@@ -11,8 +11,8 @@ const makeBug = function () {
     }, 5000, "linear", function () {
         // WASSSSSSUP YA LOST A POINT
         newBug.remove();
-        statsContainer.empty();
-        statsContainer.append(loseLife())
+        $('#statsContent').empty();
+        $('#statsContent').append(loseLife())
     });
 
     newBug.click(function () {
@@ -24,8 +24,8 @@ const makeBug = function () {
         newBug.fadeOut("slow", function () {
             // SPLAT, POINT GAINED
             newBug.remove();
-            statsContainer.empty();
-            statsContainer.append(increaseScore())
+            $('#statsContent').empty();
+            $('#statsContent').append(increaseScore())
         });
 
 

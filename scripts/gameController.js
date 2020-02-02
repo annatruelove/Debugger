@@ -6,7 +6,7 @@ var statsContainerInner;
 var statsContainer;
 var shopPopUp;
 var bugs = []
-let weGamin = false;
+let weGamin = true;
 
 $(document).ready(() => {
     rootContainer = $('#rootContainer');
@@ -68,7 +68,6 @@ const createBugs = function () {
             }
         },
         1000);
-
 }
 
 var createShopContainer = function () {
