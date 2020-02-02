@@ -67,7 +67,7 @@ const startGame = function () {
     console.log("game started");
     codeContainer.parent().animate({
         "marginTop": animationOffset + "px"
-    }, 45000, "linear", function () {
+    }, 5000, "linear", function () {
         calcPerformance();
         endRound(performance);
     });
@@ -89,9 +89,9 @@ const endRound = function (performance) {
         playWinMusic();
         gameContainer.hide();
         statsContainer.hide();
-        shopContainer.hide();
+        $('#shopPopUp').hide();
         $('#win').show();
-        $("body").css("background-image", "url(../assets/sprites/confetti.gif)");
+        $("body").css("background-image", "url(./assets/sprites/confetti.gif)");
 
     }
     roundNumber++;
