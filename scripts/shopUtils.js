@@ -4,6 +4,8 @@ function setUpShop() {
     $("#swatterItem .shopImg").on("click", increaseRadius);
     $("#sprayItem .shopImg").on("click", increaseRadius);
     $("#livesItem .shopImg").on("click", null, 1, buyLives);
+    $("#plantItem .shopImg").on("click", null, 1, plantTree);
+
 }
 
 // create pop up div
@@ -53,4 +55,9 @@ startDarkAnimation = function () {
         startLightAnimation();
     });
 
+}
+
+const plantTree = function(){
+    const tree = $('<img src="assets/sprites/plant_icon.png" id="tree"></img>');
+    rootContainer.append(tree);
 }
