@@ -29,6 +29,9 @@ var createMessage = function (type, message) {
     return messageLabel;
 }
 
-var showMsgTab = function () {
-    alert();
+var showMsgTab = function (id) {
+    $("#messagesContainer .winInner").hide();
+    $(id).show();
+    $("#messagesContainer .winTab").removeClass("active");
+    $(id + "Tab").addClass("active");
 }

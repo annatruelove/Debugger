@@ -7,7 +7,7 @@ var shopPopUp;
 $(document).ready(() => {
     rootContainer = $('#rootContainer');
     statsContainer = $('#statsContainer .winInner');
-    messagesContainer = $('#messagesContainer .winInner');
+    messagesContainer = $('#messagesContainer #inboxContent');
     createGameScreen();
     createMessagePane();
     createStatsContainer();
