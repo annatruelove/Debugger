@@ -5,14 +5,17 @@ var messagesContainerGroup;
 var statsContainerInner;
 var statsContainer;
 var shopPopUp;
-var bugs = []
-let weGamin = true;
+var bugs = [];
+var weGamin = true;
+var roundNumber = 1;
 
 $(document).ready(() => {
     rootContainer = $('#rootContainer');
     statsContainerInner = $('#statsContainer .winInner');
     statsContainer = $('#statsContainer');
-    messagesContainerInbox = $('#messagesContainer #inboxContent');
+    messagesContainerInbox = $('#inboxContent');
+    messagesContainerGroup = $('#groupContent');
+
     shopContainer = $('#shopPopUp .winInner');
     shopPopUp = $('#shopPopUp');
     gameContainer = $('#gameContainer');
@@ -35,11 +38,10 @@ $(document).ready(() => {
 
 })
 
-const createGameScreen = function () {
+
+const setLevel = function (round) {
     let codeContainer = $('#code');
-    codeContainer.append(level1);
-    console.log(gameContainer.height());
-    console.log(codeContainer.height());
+    codeContainer.append(getScript(roundNumber));
 }
 
 
@@ -48,10 +50,16 @@ const startGame = function () {
     var animationOffset = gameContainer.height() - codeContainer.height();
     codeContainer.parent().animate({
         "marginTop": animationOffset + "px"
-    }, 45000, "linear", function () {
-        weGamin = false;
+    }, 45000, "linear", function () { // Change based on round
+        endRound();
     });
     createBugs();
+}
+
+const endRound = function(){
+    weGamin = false;
+    $('.bug').remove();
+    $('#code').parent().stop();
 }
 
 var createMessagePane = function () {
@@ -72,7 +80,7 @@ const createBugs = function () {
                 gameContainer.append(makeBug());
             }
         },
-        1000);
+        levelSpeed(roundNumber));
 }
 
 var createShopContainer = function () {
