@@ -91,7 +91,7 @@ const endRound = function (performance) {
         statsContainer.hide();
         shopContainer.hide();
         $('#win').show();
-        // SHOW PIPES HERE
+        $("body").css("background-image", "url(../assets/sprites/confetti.gif)");
 
     }
     roundNumber++;
