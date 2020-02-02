@@ -67,7 +67,7 @@ const startGame = function () {
     console.log("game started");
     codeContainer.parent().animate({
         "marginTop": animationOffset + "px"
-    }, 5000, "linear", function () {
+    }, 45000, "linear", function () {
         calcPerformance();
         endRound(performance);
     });
