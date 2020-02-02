@@ -8,6 +8,7 @@ var loseLife = function() {
     if(userRAM == 0) {
         // GAME LOSE AREA
         // alert(" YOU LOSE BRUH LEAVEEEEE ");
+        showShop()
     }
     return div;
 }
