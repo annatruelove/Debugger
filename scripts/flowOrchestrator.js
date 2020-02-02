@@ -7,6 +7,7 @@ const startSequence = function() {
     loginPage.click(function() {
         loginPage.hide();
     }); 
+    setLevel(1)
 
     gameContainer.hide();
     statsContainer.hide();

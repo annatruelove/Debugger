@@ -1,4 +1,4 @@
-const level1 = `
+const level1Code = `
 /*!
  * express
  * Copyright(c) 2009-2013 TJ Holowaychuk

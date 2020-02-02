@@ -15,7 +15,7 @@ var createShop = function () {
 
     // Buy more lives
     var ramImg = new Image(50, 25);
-    ramImg.src = "assets/ui/win_code_16.png";
+    ramImg.src = "assets/stats/8GB.png";
     div.append(ramImg);
 
     div.append("Buy More Lives: 50pts/life");
@@ -39,8 +39,8 @@ var createShop = function () {
 
 
     // fly swatter
-    var swatImg = new Image(50, 25);
-    swatImg.src = "assets/ui/win_code_16.png";
+    var swatImg = new Image(50, 50);
+    swatImg.src = "assets/sprites/swatter.png";
     div.append(swatImg);
 
     div.append("Upgrade radius with fly swatter for 10 pts");
