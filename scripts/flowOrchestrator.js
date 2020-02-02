@@ -6,6 +6,7 @@ const startSequence = function() {
 
     loginButt.click(function() {
         loginPage.hide();
+        $("#taskbarContainer").show();
         messagesContainer.fadeIn();
     }); 
     setLevel(1)
