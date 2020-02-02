@@ -96,6 +96,7 @@ body {
 .winTab.active {
     height: 22px;
     z-index: 9999;
+    background: red;
 }
 
 .winTabMain {
@@ -117,8 +118,8 @@ body {
 }
 
 #messagesContainer {
-    width: 500px;
-    height: 300px;
+    width: 300px;
+    padding-bottom: 4px;
 }
 
 #messageContent {
@@ -127,6 +128,7 @@ body {
     font-size: 14px;
     line-height: 1.5;
     font-family: "MS-Sans";
+    height: 500px;
 }
 
 #statsContainer {
