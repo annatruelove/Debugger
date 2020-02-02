@@ -9,7 +9,7 @@ var loseLife = function () {
         // GAME LOSE AREA
         // alert(" YOU LOSE BRUH LEAVEEEEE ");
         if (userPts < 50){
-            alert("insert fire here");
+            burnItAll();
             endRound();
         } else{
             endRound();
