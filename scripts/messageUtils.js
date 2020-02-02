@@ -21,7 +21,7 @@ var populateMessage = function(performance, gamestatus) {
 var createMessage = function (type, message) {
     var messageLabel;
     if (type === "email") {
-        messageLabel = $('<div class="email"></div>');
+        messageLabel = $('<div class="email"><b>BOSS:</b>  </div>');
     } else if (type === "group") {
         messageLabel = $('<div class="group"></div>');
     } 
@@ -29,3 +29,9 @@ var createMessage = function (type, message) {
     return messageLabel;
 }
 
+var showMsgTab = function (id) {
+    $("#messagesContainer .winInner").hide();
+    $(id).show();
+    $("#messagesContainer .winTab").removeClass("active");
+    $(id + "Tab").addClass("active");
+}

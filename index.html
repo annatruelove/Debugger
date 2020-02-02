@@ -24,7 +24,7 @@
     </head>
 
     <body>
-        <div id="rootContainer">
+        <div id="rootContainer" class="grid">
             <div id="gameContainer" class="window">
                 <div class="winHeader">
                     <img src="assets/ui/win_code_16.png">
@@ -56,27 +56,35 @@
                 <h1>Heelmail</h1>
                 <img class="winHeaderButt" src="assets/ui/win_buttons.png">
             </div>
+            <div class="winMenu">
+                <div class="winMenuButt">
+                    <u>N</u>ew
+                </div>
+                <div class="winMenuButt">
+                    <u>E</u>dit
+                </div>
+            </div>
             <div class="winTabSet">
-                <div class="winTab active">
+                <button id="inboxContentTab" class="winTab active" onclick="showMsgTab('#inboxContent')">
                     Inbox
-                </div>
-                <div class="winTab">
-                    Clutter
-                </div>
-                <div class="winTab">
-                    Sent
-                </div>
+                </button>
+                <button id="groupContentTab" class="winTab" onclick="showMsgTab('#groupContent')">
+                    Group Message
+                </button>
             </div>
             <div class="winTabMain">
-                <div class="winInner" id="messageContent"></div>
+                <div class="winInner active" id="inboxContent">
+                </div>
+                <div class="winInner" id="groupContent">
+                    ## Prepend messages to #groupContent
+                </div>
             </div>
-            
         </div>
         <div id="statsContainer" class="window">
             
             <div class="winHeader">
 
-                <img src="assets/ui/win_mail_16.png">
+                <img src="assets/ui/win_stats_16.png">
                 <h1>Stats</h1>
                 <img class="winHeaderButt" src="assets/ui/win_buttons.png">
             </div>
@@ -95,7 +103,26 @@
         </div>
         
     </div>
-    <div id="taskbarContainer"></div>
+    <div id="taskbarContainer" class="window">
+        <div id="wintask" class="windows-logo">
+            <img src="assets/ui/win_logo.png">
+            Stop
+        </div>
+        <img src="assets/ui/win_clickedtask.jpeg">
+        <img src="assets/ui/win_unclickedtask.jpeg">
+        <div id="codetask" class="unclicked">
+            <img src="assets/ui/win_code_16.png">
+            Debuggin'
+        </div>
+        <div id="statstask" class="unclicked">
+            <img src="assets/ui/win_stats_16.png">
+            Stats
+        </div>
+        <div id="messagestask" class="clicked">
+            <img src="assets/ui/win_mail_16.png">
+            Messages
+        </div>
+    </div>
 </body>
 
 </html>

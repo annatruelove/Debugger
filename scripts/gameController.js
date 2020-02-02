@@ -1,13 +1,14 @@
 var rootContainer;
 var gameContainer;
-var messagesContainer;
+var messagesContainerInbox;
+var messagesContainerGroup;
 var statsContainer;
 var shopPopUp;
 
 $(document).ready(() => {
     rootContainer = $('#rootContainer');
     statsContainer = $('#statsContainer .winInner');
-    messagesContainer = $('#messagesContainer .winInner');
+    messagesContainerInbox = $('#messagesContainer #inboxContent');
     shopContainer = $('#shopPopUp .winInner');
     createGameScreen();
     createMessagePane();
@@ -31,7 +32,7 @@ const createGameScreen = function () {
 
 var createMessagePane = function () {
     // initial email box 
-    messagesContainer.append(createMessage("email", startEmail));
+    messagesContainerInbox.prepend(createMessage("email", startEmail));
 }
 
 var createStatsContainer = function () {
