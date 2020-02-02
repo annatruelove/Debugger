@@ -17,7 +17,6 @@ const makeBug = function () {
     });
 
     newBug.click(function () {
-        console.log("we clickin");
         newBug.attr("src", "assets/sprites/splat.png")
         newBug.stop();
         playBackgroundMusic();
