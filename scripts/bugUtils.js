@@ -6,8 +6,9 @@ const makeBug = function(){
         top: '-60px'
     }, 5000,"linear", function(){
         newBug.remove();
-        // lose life
-    });
+        statsContainer.empty();
+        statsContainer.append(loseLife())
+});
 
     newBug.click(function() {
         //newBug.attr("src",) update image
@@ -15,7 +16,8 @@ const makeBug = function(){
         newBug.stop();
         newBug.fadeOut("fast", function(){
             newBug.remove();
-            //addPoints
+            statsContainer.empty();
+            statsContainer.append(increaseScore())
         });
     })
     

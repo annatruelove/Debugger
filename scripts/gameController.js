@@ -11,12 +11,16 @@ $(document).ready(() => {
     statsContainer = $('#statsContainer .winInner');
     messagesContainerInbox = $('#messagesContainer #inboxContent');
     shopContainer = $('#shopPopUp .winInner');
+    shopPopUp = $('#shopPopUp');
     createGameScreen();
     createMessagePane();
     createStatsContainer();
 
     // this will be called when a game is over
     createShopContainer();
+    
+    hideShop(); // use to hide shop
+    showShop(); // use to show shop
 
     Prism.highlightAll();
     $(".window").draggable({ handle: ".winHeader" });
@@ -32,7 +36,9 @@ const createGameScreen = function () {
     console.log(codeContainer.height());
     codeContainer.parent().animate({
         "marginTop": animationOffset + "px"
-    }, 200000, "linear");
+    }, 200000, "linear", function(){
+        // round end
+    });
     createBugs();
 }
 
@@ -52,4 +58,12 @@ const createBugs = function(){
 
 var createShopContainer = function () {
     shopContainer.append(createShop());
+}
+
+var hideShop = function() {
+    shopPopUp.hide();
+}
+
+var showShop = function() {
+    shopPopUp.show();
 }
