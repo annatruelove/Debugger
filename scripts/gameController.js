@@ -13,6 +13,8 @@ var shopPopUp;
 var bugs = [];
 var weGamin = true;
 var roundNumber = 1;
+var performance = "good";
+var userRAM = 8;
 
 $(document).ready(() => {
     rootContainer = $('#rootContainer');
@@ -60,17 +62,23 @@ const startGame = function () {
     codeContainer.parent().animate({
         "marginTop": animationOffset + "px"
     }, 20000, "linear", function () {
-        endRound();
+        calcPerformance();
+        endRound(performance);     
     });
     createBugs();
 }
 
-const endRound = function(){
+const endRound = function(performance){
     weGamin = false;
     $('.bug').stop();
     $('.bug').remove();
     $('#code').parent().stop();
-    showShop();
+    populateMessage(performance, "endround");
+    
+    setTimeout(function() {
+        showShop();
+        },3000)
+
 }
 
 var createMessagePane = function () {
@@ -113,5 +121,15 @@ var toggle = function(container, tab) {
     } else {
         container.show();
         tab.attr("class", "miniProgram clicked");
+    }
+}
+
+var calcPerformance = function() {
+    if (userRAM >= 6) {
+        performance = "good";
+    } else if (userRAM >= 2) {
+        performance = "average";
+    } else {
+        performance = "bad";
     }
 }

@@ -1,4 +1,3 @@
-var userRAM = 8;
 var userPts = 0;
 
 var loseLife = function () {
@@ -6,12 +5,13 @@ var loseLife = function () {
     div.append(updateRAM(-2));
     div.append(updateScore(0));
     if (userRAM == 0) {
+        performance = "bad";
         // GAME LOSE AREA
         // alert(" YOU LOSE BRUH LEAVEEEEE ");
-        if (userPts < 50){
+        if (userPts < 10){
             burnItAll();
         } else {
-            endRound();
+            endRound(performance);
             showShop()    
         }
     }
