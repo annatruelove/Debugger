@@ -14,10 +14,9 @@ const startSequence = function() {
 
     $('#startDebuggingButton').click(function(){
         gameContainer.fadeIn(3000);
-        statsContainer.fadeIn(3000); 
-        gameContainer.append(makeFirstBug());
+        statsContainer.fadeIn(3000, function() {
+            gameContainer.append(makeFirstBug());
+            $('#startDebuggingButton').prop('disabled', true);    
+        }); 
     })
-
-
-
 }
