@@ -40,12 +40,13 @@ var createShop = function () {
 
     div.append("Upgrade radius with fly swatter for 10 pts");
 
-    var livesButton = document.createElement("button")
-    var livesText = document.createTextNode("Purchase");
-    livesButton.onclick = function () { buyLives(input.value) };
-    livesButton.appendChild(livesText);
+    var swatButton = document.createElement("button")
+    var swatText = document.createTextNode("Purchase");
+    // need to implement
+    swatButton.onclick = function () { increaseRadius() };
+    swatButton.appendChild(swatText);
 
-    div.append(livesButton);
+    div.append(swatButton);
 
 
     return div;
@@ -56,7 +57,7 @@ var buyLives = function (inputValue) {
     console.log("value: " + inputValue);
 
     if (userPts < inputValue) {
-        div.append("Insufficient Funds")
+        div.append("Insufficient Funds");
     } else {
         userRAM += inputValue * 2;
         userPts -= inputValue;
@@ -66,4 +67,18 @@ var buyLives = function (inputValue) {
 
     }
 
+}
+
+var increaseRadius = function () {
+
+    //increase the radius
+
+    // subtract points
+    if (userPts < 10) {
+        div.append("Insufficient Funds");
+    } else {
+        statsContainer.empty();
+        statsContainer.append(updateRAM(0));
+        statsContainer.append(updateScore(-10));
+    }
 }

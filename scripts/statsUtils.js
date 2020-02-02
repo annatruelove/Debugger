@@ -1,5 +1,5 @@
 var userRAM = 8;
-var userPts = 0;
+var userPts = 20;
 
 var loseLife = function() {
     let div = $('<div></div>');
