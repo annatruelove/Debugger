@@ -14,9 +14,12 @@ const startSequence = function() {
     $('#startDebuggingButton').click(function(){
         gameContainer.fadeIn(3000);
         statsContainer.fadeIn(3000); 
+
+        // make tabs look clicked 
+        statsTask.attr("class", "miniProgram clicked");
+        codeTask.attr("class", "miniProgram clicked");
+
         gameContainer.append(makeFirstBug());
     })
-
-
 
 }

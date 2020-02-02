@@ -2,8 +2,12 @@ var rootContainer;
 var gameContainer;
 var messagesContainerInbox;
 var messagesContainerGroup;
+var messagesContainer;
 var statsContainerInner;
 var statsContainer;
+var statsTask;
+var codeTask;
+var messagesTask;
 var loginPage;
 var shopPopUp;
 var bugs = []
@@ -13,11 +17,15 @@ $(document).ready(() => {
     rootContainer = $('#rootContainer');
     statsContainerInner = $('#statsContainer .winInner');
     statsContainer = $('#statsContainer');
+    messagesContainer = $('#messagesContainer');
     messagesContainerInbox = $('#messagesContainer #inboxContent');
     shopContainer = $('#shopPopUp .winInner');
     shopPopUp = $('#shopPopUp');
     gameContainer = $('#gameContainer');
     loginPage = $('#loginPage')
+    statsTask = $('#statstask');
+    codeTask = $('#codetask');
+    messagesTask = $('#messagestask')
     createGameScreen();
     createMessagePane();
     createStatsContainer();
@@ -32,6 +40,16 @@ $(document).ready(() => {
     $(".window").draggable({
         handle: ".winHeader"
     });
+
+    statsTask.click(function() {
+        toggle(statsContainer, statsTask);
+    })
+    codeTask.click(function() {
+        toggle(gameContainer, codeTask);
+    })
+    messagesTask.click(function() {
+        toggle(messagesContainer, messagesTask);
+    })
 
     runGame();
 
@@ -87,4 +105,14 @@ var hideShop = function () {
 
 var showShop = function () {
     shopPopUp.show();
+}
+
+var toggle = function(container, tab) {
+    if (container.is(":visible")) {
+        container.hide();
+        tab.attr("class", "miniProgram");
+    } else {
+        container.show();
+        tab.attr("class", "miniProgram clicked");
+    }
 }
