@@ -6,7 +6,8 @@ var loseLife = function() {
     div.append(updateRAM(-2));
     div.append(updateScore(0));
     if(userRAM == 0) {
-        alert(" YOU LOSE BRUH LEAVEEEEE ");
+        // GAME LOSE AREA
+        // alert(" YOU LOSE BRUH LEAVEEEEE ");
     }
     return div;
 }
