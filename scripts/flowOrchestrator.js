@@ -3,6 +3,11 @@ const runGame = function() {
 }
 
 const startSequence = function() {
+
+    loginPage.click(function() {
+        loginPage.hide();
+    }); 
+
     gameContainer.hide();
     statsContainer.hide();
 
@@ -13,5 +18,5 @@ const startSequence = function() {
     })
 
 
-    
+
 }
