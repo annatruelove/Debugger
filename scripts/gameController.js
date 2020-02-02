@@ -9,9 +9,11 @@ $(document).ready(() => {
     rootContainer = $('#rootContainer');
     statsContainer = $('#statsContainer .winInner');
     messagesContainerInbox = $('#messagesContainer #inboxContent');
+    shopContainer = $('#shopPopUp .winInner');
     createGameScreen();
     createMessagePane();
     createStatsContainer();
+    createShopContainer();
     Prism.highlightAll();
     $(".window").draggable({ handle: ".winHeader" });
 })
@@ -36,4 +38,8 @@ var createMessagePane = function () {
 var createStatsContainer = function () {
     statsContainer.append(updateRAM(0));
     statsContainer.append(updateScore(0));
+}
+
+var createShopContainer = function () {
+    shopContainer.append(createShop());
 }
