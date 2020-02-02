@@ -62,6 +62,7 @@ const burnItAll = function () {
     $('.bug').stop();
     $('.bug').remove();
     $('#code').parent().stop();
+    playFailureMusic();
 
     throwErrorMessages();
 
