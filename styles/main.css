@@ -105,6 +105,13 @@ body {
     border-image: url(../assets/ui/win_border.png) 4 stretch;
 }
 
+.popUp {
+    z-index: 10000;
+    width: 300px;
+    height: 200px;
+    border-style: solid;
+}
+
 #gameContainer {
     width: 600px;
 }
@@ -135,6 +142,24 @@ body {
     font-size: xx-large;
     letter-spacing: 1.5px;
     width: 500px;
+}
+
+#shopPopUp {
+    font-family: "MS-Sans";
+    /* display: none; */
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    width: 50%;
+    height: 50%;
+    padding: 16px;
+    /* border: 16px solid orange; */
+    border: 5px solid transparent;
+    border-image: linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%);
+    border-image-slice: 1;
+    background-color: white;
+    z-index:1002;
+    overflow: auto;
 }
 
 .email {
