@@ -13,14 +13,11 @@ var createShop = function () {
     div.append($('<br>'));
 
     // Buy more lives
-    var ramImg = new Image(75, 50);
+    var ramImg = new Image(50, 25);
     ramImg.src = "assets/ui/win_code_16.png";
     div.append(ramImg);
 
-    // button trigger pop up div to be created 
-
-
-    div.append("Buy More Lives");
+    div.append("Buy More Lives: 50pts/life");
     var input = document.createElement("INPUT");
     input.setAttribute("type", "number");
     div.append(input);
@@ -32,6 +29,26 @@ var createShop = function () {
 
     div.append(livesButton);
 
+    div.append($('<br>'));
+    div.append($('<br>'));
+
+
+    // fly swatter
+    var swatImg = new Image(50, 25);
+    swatImg.src = "assets/ui/win_code_16.png";
+    div.append(swatImg);
+
+    div.append("Upgrade radius with fly swatter for 10 pts");
+
+    var swatButton = document.createElement("button")
+    var swatText = document.createTextNode("Purchase");
+    // need to implement
+    swatButton.onclick = function () { increaseRadius() };
+    swatButton.appendChild(swatText);
+
+    div.append(swatButton);
+
+
     return div;
 }
 
@@ -40,14 +57,28 @@ var buyLives = function (inputValue) {
     console.log("value: " + inputValue);
 
     if (userPts < inputValue) {
-        div.append("Insufficient Funds")
+        div.append("Insufficient Funds");
     } else {
         userRAM += inputValue * 2;
-        userPts -= inputValue;
+        userPts -= inputValue * 50;
         statsContainer.empty();
         statsContainer.append(updateRAM(0));
         statsContainer.append(updateScore(0));
 
     }
 
+}
+
+var increaseRadius = function () {
+
+    //increase the radius
+
+    // subtract points
+    if (userPts < 10) {
+        div.append("Insufficient Funds");
+    } else {
+        statsContainer.empty();
+        statsContainer.append(updateRAM(0));
+        statsContainer.append(updateScore(-10));
+    }
 }

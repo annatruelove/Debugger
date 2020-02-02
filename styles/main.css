@@ -122,8 +122,8 @@ body {
 .popUp {
     z-index: 10000;
     width: 300px;
-    height: 200px;
     border-style: solid;
+    text-align: center;
 }
 
 #gameContainer {
