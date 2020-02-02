@@ -19,10 +19,19 @@ const startSequence = function() {
             gameContainer.append(makeFirstBug());
             statsTask.attr("class", "miniProgram clicked");
             codeTask.attr("class", "miniProgram clicked");
-     
+
+            statsTask.click(function() {
+                toggle(statsContainer, statsTask);
+            })
+            codeTask.click(function() {
+                toggle(gameContainer, codeTask);
+            })
+            messagesTask.click(function() {
+                toggle(messagesContainer, messagesTask);
+            })
+        
         }); 
 
-        // make tabs look clicked 
 
     })
 

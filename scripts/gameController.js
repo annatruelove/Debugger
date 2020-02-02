@@ -40,16 +40,6 @@ $(document).ready(() => {
         handle: ".winHeader"
     });
 
-    statsTask.click(function() {
-        toggle(statsContainer, statsTask);
-    })
-    codeTask.click(function() {
-        toggle(gameContainer, codeTask);
-    })
-    messagesTask.click(function() {
-        toggle(messagesContainer, messagesTask);
-    })
-
     runGame();
 
 })
