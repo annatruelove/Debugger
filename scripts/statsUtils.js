@@ -1,12 +1,13 @@
 var userRAM = 8;
-var userPts = 100;
+var userPts = 0;
 
 var loseLife = function() {
     let div = $('<div></div>');
     div.append(updateRAM(-2));
     div.append(updateScore(0));
     if(userRAM == 0) {
-        alert(" YOU LOSE BRUH LEAVEEEEE ");
+        // GAME LOSE AREA
+        // alert(" YOU LOSE BRUH LEAVEEEEE ");
     }
     return div;
 }
@@ -48,12 +49,8 @@ var updateRAM = function(gb){
 }
 
 var updateScore = function(newPts){
-
     userPts += newPts;
-
     var div = $('<div class="stats"></div>');
-
     div.append("Points: " + userPts);
-
     return div;
 }

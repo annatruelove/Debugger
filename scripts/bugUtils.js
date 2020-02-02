@@ -5,20 +5,25 @@ const makeBug = function(){
     newBug.animate({
         top: '-60px'
     }, 5000,"linear", function(){
+        // WASSSSSSUP YA LOST A POINT
         newBug.remove();
         statsContainer.empty();
         statsContainer.append(loseLife())
 });
 
     newBug.click(function() {
-        //newBug.attr("src",) update image
         console.log("we clickin");
+        newBug.attr("src","assets/sprites/splat.png")
         newBug.stop();
-        newBug.fadeOut("fast", function(){
+        
+        newBug.fadeOut("slow", function(){
+            // SPLAT, POINT GAINED
             newBug.remove();
             statsContainer.empty();
             statsContainer.append(increaseScore())
-        });
+        }); 
+
+        
     })
     
     return newBug;
