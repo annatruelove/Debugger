@@ -27,22 +27,25 @@ var updateRAM = function(gb){
     var div = $('<div class="stats"></div>');
     var ramImg = new Image(75, 50);
 
-
     if (userRAM == 2){
         div.append("Memory Remaining: 2GB ");
-        ramImg.src = "assets/stats/2GB.png"
+        ramImg.src = "assets/stats/2GB.png";
         div.append(ramImg);
     } else if (userRAM == 4){
         div.append("Memory Remaining: 4GB ");
-        ramImg.src = "assets/stats/4GB.png"
+        ramImg.src = "assets/stats/4GB.png";
         div.append(ramImg);
     } else if (userRAM == 6){
         div.append("Memory Remaining: 6GB ");
-        ramImg.src = "assets/stats/6GB.png"
+        ramImg.src = "assets/stats/6GB.png";
         div.append(ramImg);
     } else if (userRAM >= 8){
         div.append("Memory Remaining: 8GB ");
-        ramImg.src = "assets/stats/8GB.png"
+        ramImg.src = "assets/stats/8GB.png";
+        div.append(ramImg);
+    } else if (userRAM <= 0) {
+        div.append("Memory Remaining: 0GB ");
+        ramImg.src = "assets/stats/2GB.png"
         div.append(ramImg);
     }
 
