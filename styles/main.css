@@ -175,7 +175,7 @@ body {
     font-family: "MS-Sans";
     font-size: xx-large;
     letter-spacing: 1.5px;
-    width: 400px;
+    width: 402px;
     z-index: 1000;
     left: 20px;
     top: 80%;
@@ -355,4 +355,11 @@ body {
 
 .login button.rec {
     box-shadow: 0 0 0 1px black;
+}
+
+#tree {
+    height: 15%;
+    position:absolute;
+    bottom:20px;
+    right:20px;
 }
