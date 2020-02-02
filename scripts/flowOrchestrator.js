@@ -23,12 +23,27 @@ const startSequence = function() {
             statsTask.click(function() {
                 toggle(statsContainer, statsTask);
             })
+
+            $('#statsCloseButton').click(function() {
+                toggle(statsContainer, statsTask);
+            })
+
             codeTask.click(function() {
                 toggle(gameContainer, codeTask);
             })
+
+            $('#gameCloseButton').click(function() {
+                toggle(gameContainer, codeTask);
+            })
+
             messagesTask.click(function() {
                 toggle(messagesContainer, messagesTask);
             })
+
+            $('#messageCloseButton').click(function() {
+                toggle(messagesContainer, messagesTask);
+            })
+
         
         }); 
 
