@@ -29,36 +29,20 @@ var increaseScore = function () {
 var updateRAM = function (gb) {
     userRAM += gb;
 
-    // <div>
-    //     <div id="memoryBar" class="winInner winBar">
-    //         <div class="winBarInner"></div>
-    //         69%
-    //     </div>
-    //     <p>Memory remaining: </p>
-    // </div>
-    // <div>
-    //     <div id="pointsBar" class="winInner winBar">
-    //         <div class="winBarInner"></div>
-    //         69%
-    //     </div>
-    //     <p>Bugs squashed: </p>
-    // </div>
-
     if (userRAM >= 8) {
-        userRAM = 7;
+        userRAM = 8;
     } else if (userRAM <= 0) {
-        // div.append("Memory Remaining: 0GB ");
-        // ramImg.src = "assets/stats/0GB.png"
-        // div.append(ramImg);
         userRAM = 0;
     }
 
     var div = $('<div></div>');
-    var percent = Math.floor(userRAM / 8);
-    var progressBar = "<div id='memoryBar' class='winInner winBar'><div class='winBarInner></div>" + percent + "%</div>";
-    
+    var percent = Math.floor(userRAM / 8 * 100);
+    var progressBar = $("<div id='memoryBar' class='winInner winBar'></div>");
+    progressBar.append("<div class='winBarInner'></div>" + percent + "%");
+
     div.append(progressBar);
-    div.append("<p>Memory remaining: " + userRAM + " GB</p>")
+
+    div.append("<p>Memory remaining: " + userRAM + " GB</p>");
 
     return div;
 }
@@ -66,8 +50,8 @@ var updateRAM = function (gb) {
 var updateScore = function (newPts) {
     userPts += newPts;
     var div = $('<div></div>');
-    var percent = Math.floor(userRAM / 8);
-    var progressBar = "<div id='pointsBar' class='winInner winBar'><div class='winBarInner></div></div>";
+    var percent = Math.round(userRAM / 8);
+    var progressBar = "<div id='pointsBar' class='winInner winBar'><div class='winBarInner'></div></div>";
     div.append(progressBar);
     div.append("<p>Bugs squashed: " + userPts + "</p>")
     return div;
