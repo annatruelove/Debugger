@@ -1,5 +1,4 @@
-
-var populateMessage = function(performance, gamestatus) {
+var populateMessage = function (performance, gamestatus) {
     // access messageBank 
 
     var messages = "";
@@ -11,7 +10,7 @@ var populateMessage = function(performance, gamestatus) {
         var messages = badMap.get(gamestatus);
     }
 
-    var message = messages[Math.floor(Math.random()*messages.length)];
+    var message = messages[Math.floor(Math.random() * messages.length)];
 
     var splitMessage = message.split(":");
     return createMessage(splitMessage[0], splitMessage[1]);
@@ -24,7 +23,7 @@ var createMessage = function (type, message) {
         messageLabel = $('<div class="email"><b>BOSS:</b>  </div>');
     } else if (type === "group") {
         messageLabel = $('<div class="group"></div>');
-    } 
+    }
     messageLabel.append(message);
     return messageLabel;
 }
