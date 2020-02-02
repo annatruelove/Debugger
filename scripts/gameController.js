@@ -1,6 +1,7 @@
 var rootContainer;
 var gameContainer;
-var messagesContainer;
+var messagesContainerInbox;
+var messagesContainerGroup;
 var statsContainer;
 var shopPopUp;
 var bugs = []
@@ -8,10 +9,12 @@ var bugs = []
 $(document).ready(() => {
     rootContainer = $('#rootContainer');
     statsContainer = $('#statsContainer .winInner');
-    messagesContainer = $('#messagesContainer .winInner');
+    messagesContainerInbox = $('#messagesContainer #inboxContent');
+    shopContainer = $('#shopPopUp .winInner');
     createGameScreen();
     createMessagePane();
     createStatsContainer();
+    createShopContainer();
     Prism.highlightAll();
     $(".window").draggable({ handle: ".winHeader" });
     
@@ -35,7 +38,7 @@ const createGameScreen = function () {
 
 var createMessagePane = function () {
     // initial email box 
-    messagesContainer.prepend(createMessage("email", startEmail));
+    messagesContainerInbox.prepend(createMessage("email", startEmail));
 }
 
 var createStatsContainer = function () {
@@ -73,3 +76,6 @@ const bugSquash = function(click){
     
 }
 
+var createShopContainer = function () {
+    shopContainer.append(createShop());
+}
