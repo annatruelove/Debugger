@@ -31,6 +31,8 @@ $(document).ready(() => {
         handle: ".winHeader"
     });
 
+    runGame();
+
 })
 
 const createGameScreen = function () {
