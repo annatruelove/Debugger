@@ -81,7 +81,6 @@ body {
     height: 18px;
     margin: 9px 10px 0;
     position: relative;
-    overflow: hidden;
 }
 
 .winTab {
@@ -96,7 +95,8 @@ body {
 .winTab.active {
     height: 22px;
     z-index: 9999;
-    background: red;
+    transform: translateY(-2px);
+    border-image: url(../assets/ui/win_tab_a_border.png) 2 stretch;
 }
 
 .winTabMain {
