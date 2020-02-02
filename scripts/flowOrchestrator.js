@@ -51,6 +51,7 @@ const startSequence = function() {
 }
 
 const burnItAll = function () {
+    $('#taskbarContainer').hide();
     document.body.style.backgroundImage = 'url("./assets/sprites/giphy.gif")';
     toggle(gameContainer, codeTask);
     toggle(statsContainer, statsTask);
@@ -61,4 +62,19 @@ const burnItAll = function () {
     $('.bug').remove();
     $('#code').parent().stop();
 
+    throwErrorMessages();
+
 }
+
+const throwErrorMessages = function() {  
+    for (let i = 0; i < 50; i++) {
+        $('body').delay(100).append('<img id="pic" src="assets/ui/win_error_window.png"></img>');
+       // document.getElementById('pic').style.top = numberRandomizer() + 'px';
+        //document.getElementById('pic').style.left = numberRandomizer() + 'px';
+    }
+}
+
+function numberRandomizer(){
+    var x = Math.floor((Math.random() * 100)); 
+    return x;
+  }

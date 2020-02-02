@@ -13,6 +13,8 @@ var shopPopUp;
 var bugs = [];
 var weGamin = true;
 var roundNumber = 1;
+var performance = "good";
+var userRAM = 8;
 
 $(document).ready(() => {
     rootContainer = $('#rootContainer');
@@ -35,7 +37,7 @@ $(document).ready(() => {
     createShopContainer();
 
     hideShop(); // use to hide shop
-    //showShop(); // use to show shop
+    // showShop(); // use to show shop
 
     $(".window").draggable({
         handle: ".winHeader"
@@ -50,7 +52,9 @@ const setLevel = function () {
     let codeContainer = $('#code');
     codeContainer.empty();
     codeContainer.append(getScript(roundNumber));
-    codeContainer.css({"margin-top":"0px"});
+    codeContainer.css({
+        "margin-top": "0px"
+    });
     Prism.highlightAll();
 
 }
@@ -63,18 +67,19 @@ const startGame = function () {
     console.log("game started");
     codeContainer.parent().animate({
         "marginTop": animationOffset + "px"
-    }, 10000, "linear", function () { // set this to how long every level should eb
-        endRound();
+    }, 10000, "linear", function () {
+        calcPerformance();
+        endRound(performance);
     });
     createBugs();
 }
 
-const endRound = function () {
+const endRound = function (performance) {
     weGamin = false;
     $('.bug').stop();
     $('.bug').remove();
     $('#code').parent().stop();
-    showShop();
+
     if (roundNumber === 3) {
         alert(" you won the game ? ");
     }
@@ -86,6 +91,11 @@ const endRound = function () {
         $('#startDebuggingButton').prop('disabled', true);
         startGame()
     })
+    populateMessage(performance, "endround");
+
+    setTimeout(function () {
+        showShop();
+    }, 3000)
 
 }
 
@@ -111,7 +121,7 @@ const createBugs = function () {
 }
 
 var createShopContainer = function () {
-    shopContainer.append(createShop());
+    setUpShop();
 }
 
 var hideShop = function () {
@@ -129,5 +139,15 @@ var toggle = function (container, tab) {
     } else {
         container.show();
         tab.attr("class", "miniProgram clicked");
+    }
+}
+
+var calcPerformance = function () {
+    if (userRAM >= 6) {
+        performance = "good";
+    } else if (userRAM >= 2) {
+        performance = "average";
+    } else {
+        performance = "bad";
     }
 }

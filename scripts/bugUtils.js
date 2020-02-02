@@ -13,7 +13,6 @@ const makeBug = function () {
         newBug.remove();
         $('#statsContent').empty();
         $('#statsContent').append(loseLife())
-        populateMessage("bad","random");
     });
 
     newBug.click(function () {
