@@ -11,10 +11,15 @@ $(document).ready(() => {
     statsContainer = $('#statsContainer .winInner');
     messagesContainerInbox = $('#messagesContainer #inboxContent');
     shopContainer = $('#shopPopUp .winInner');
+    shopPopUp = $('#shopPopUp');
     createGameScreen();
     createMessagePane();
     createStatsContainer();
     createShopContainer();
+    
+    hideShop(); // use to hide shop
+    showShop(); // use to show shop
+
     Prism.highlightAll();
     $(".window").draggable({ handle: ".winHeader" });
     
@@ -78,4 +83,12 @@ const bugSquash = function(click){
 
 var createShopContainer = function () {
     shopContainer.append(createShop());
+}
+
+var hideShop = function() {
+    shopPopUp.hide();
+}
+
+var showShop = function() {
+    shopPopUp.show();
 }
