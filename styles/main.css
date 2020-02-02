@@ -1,5 +1,6 @@
 * {
     outline: none;
+    user-select: none;
 }
 
 body {
@@ -134,7 +135,6 @@ body {
     width: 100%;
     padding: 0;
     max-height: 500px;
-    user-select: none;
 }
 
 #codeWrapper pre {
@@ -164,6 +164,11 @@ body {
 #inboxContent.active,
 #groupContent.active {
     display: block;
+}
+
+#startDebuggingButton {
+    margin-left: 4px;
+    margin-top: 12px;
 }
 
 #statsContainer {
