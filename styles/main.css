@@ -139,6 +139,10 @@ body {
     user-select: none;
 }
 
+#codeWrapper pre {
+    overflow-x: hidden;
+}
+
 #messagesContainer {
     width: 300px;
     padding-bottom: 4px;
