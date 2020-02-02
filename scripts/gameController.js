@@ -7,7 +7,7 @@ var shopPopUp;
 $(document).ready(() => {
     rootContainer = $('#rootContainer');
     statsContainer = $('#statsContainer .winInner');
-    messagesContainer = $('#messagesContainer .winInner');
+    messagesContainer = $('#messagesContainer #inboxContent');
     createGameScreen();
     createMessagePane();
     createStatsContainer();
@@ -29,8 +29,7 @@ const createGameScreen = function () {
 
 var createMessagePane = function () {
     // initial email box 
-    // TODO after toms update, append to the proper place 
-    messagesContainer.append(createMessage("email", startEmail));
+    messagesContainer.prepend(createMessage("email", startEmail));
 }
 
 var createStatsContainer = function () {

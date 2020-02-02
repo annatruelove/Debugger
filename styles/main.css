@@ -1,3 +1,7 @@
+* {
+    outline: none;
+}
+
 body {
     background: #55aaaa;
     padding: 16px;
@@ -74,8 +78,6 @@ body {
 
 .winTabSet {
     color: black;
-    font-family: "MS-Sans";
-    line-height: 15px;
     font-size: 0;
 
     height: 18px;
@@ -84,10 +86,13 @@ body {
 }
 
 .winTab {
+    background-color: transparent;
+    font-family: "MS-Sans";
     height: 18px;
     font-size: 10px;
     display: inline-block;
     padding: 0 4px;
+    transform: translateY(-2px);
     border: 2px solid transparent;
     border-image: url(../assets/ui/win_tab_border.png) 2 stretch;
 }
@@ -122,13 +127,18 @@ body {
     padding-bottom: 4px;
 }
 
-#messageContent {
+#inboxContent, #groupContent {
     margin: -4px;
     padding: 4px;
     font-size: 14px;
     line-height: 1.5;
     font-family: "MS-Sans";
     height: 500px;
+    display: none;
+}
+
+#inboxContent.active, #groupContent.active {
+    display: block;
 }
 
 #statsContainer {

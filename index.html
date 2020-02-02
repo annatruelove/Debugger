@@ -63,16 +63,18 @@
                 </div>
             </div>
             <div class="winTabSet">
-                <div class="winTab active">
+                <button id="inboxContentTab" class="winTab active" onclick="showMsgTab('#inboxContent')">
                     Inbox
-                </div>
-                <div class="winTab">
+                </button>
+                <button id="groupContentTab" class="winTab" onclick="showMsgTab('#groupContent')">
                     Group Message
-                </div>
+                </button>
             </div>
             <div class="winTabMain">
-                <div class="winInner" id="messageContent">
-
+                <div class="winInner active" id="inboxContent">
+                </div>
+                <div class="winInner" id="groupContent">
+                    ## Prepend messages tp #groupContent
                 </div>
             </div>
         </div>
