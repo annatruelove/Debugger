@@ -46,7 +46,7 @@ $(document).ready(() => {
 })
 
 
-const setLevel = function (round) {
+const setLevel = function () {
     let codeContainer = $('#code');
     codeContainer.append(getScript(roundNumber));
     Prism.highlightAll();
@@ -59,7 +59,7 @@ const startGame = function () {
     var animationOffset = gameContainer.height() - codeContainer.height();
     codeContainer.parent().animate({
         "marginTop": animationOffset + "px"
-    }, 45000, "linear", function () { // Change based on round
+    }, 20000, "linear", function () {
         endRound();
     });
     createBugs();
@@ -67,6 +67,7 @@ const startGame = function () {
 
 const endRound = function(){
     weGamin = false;
+    $('.bug').stop();
     $('.bug').remove();
     $('#code').parent().stop();
 }
