@@ -17,11 +17,12 @@ var buyLives = function (event) {
     if (userPts < inputValue) {
         div.append("Insufficient Funds");
     } else {
-        userRAM += inputValue * 2;
-        userPts -= inputValue * 50;
+        userRAM += 4;
+        userPts -= 50;
         statsContainer.empty();
-        statsContainer.append(updateRAM(0));
-        statsContainer.append(updateScore(0));
+        
+        $('#statsContentNew').empty();
+        $('#statsContentNew').append(loseLife())
     }
 }
 
