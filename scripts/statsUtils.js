@@ -1,5 +1,5 @@
-var userRAM = 6;
-var userPts = 10;
+var userRAM = 8;
+var userPts = 0;
 
 var loseLife = function() {
     userRAM = userRAM - 2;
