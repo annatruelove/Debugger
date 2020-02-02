@@ -57,6 +57,10 @@ const burnItAll = function () {
     toggle(gameContainer, codeTask);
     toggle(statsContainer, statsTask);
     toggle(messagesContainer, messagesTask);
+    weGamin = false;
+
+    $('.bug').stop();
+    $('.bug').remove();
     $('#code').parent().stop();
 
     throwErrorMessages();
