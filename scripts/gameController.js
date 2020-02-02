@@ -95,10 +95,7 @@ const endRound = function (performance) {
     })
     populateMessage(performance, "endround");
 
-    setTimeout(function () {
-        showShop();
-    }, 3000)
-
+    showShop();
 }
 
 var createMessagePane = function () {
