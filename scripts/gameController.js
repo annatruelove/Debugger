@@ -37,8 +37,7 @@ const createGameScreen = function () {
     console.log(codeContainer.height());
     codeContainer.parent().animate({
         "marginTop": animationOffset + "px"
-    }, 200000, "linear", function(){
-        alert("GOOD JOB!");
+    }, 45000, "linear", function(){
         weGamin = false;
     });
     createBugs();
