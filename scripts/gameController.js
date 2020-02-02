@@ -28,7 +28,6 @@ $(document).ready(() => {
     statsTask = $('#statstask');
     codeTask = $('#codetask');
     messagesTask = $('#messagestask')
-    createGameScreen();
     createMessagePane();
     createStatsContainer();
     // this will be called when a game is over
