@@ -173,14 +173,41 @@ body {
 
 #statsContainer {
     font-family: "MS-Sans";
-    font-weight: bold;
     font-size: xx-large;
     letter-spacing: 1.5px;
-    width: 500px;
+    width: 400px;
     z-index: 1000;
     left: 20px;
     top: 80%;
     background-color: #c3c7cb;
+}
+
+#statsContent {
+    display: none;
+}
+
+#statsContentNew {
+    font-size: 12px;
+    margin-top: 16px;
+    margin-right: 16px;
+}
+
+.winBar {
+    height: 20px;
+    line-height: 18px;
+    text-align: center;
+    margin-bottom: 8px;
+    background-color: transparent;
+}
+
+.winBarInner {
+    height: 16px;
+    position: absolute;
+    background: url(../assets/ui/win_progress.png) left top repeat-x;
+}
+
+#statsContentNew p {
+    margin-bottom: 8px;
 }
 
 #shopPopUp {

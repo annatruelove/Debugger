@@ -16,7 +16,7 @@ var roundNumber = 1;
 
 $(document).ready(() => {
     rootContainer = $('#rootContainer');
-    statsContainerInner = $('#statsContainer .winInner');
+    statsContainerInner = $('#statsContainer #statsContentNew');
     statsContainer = $('#statsContainer');
     messagesContainerInbox = $('#inboxContent');
     messagesContainerGroup = $('#groupContent');
