@@ -189,7 +189,13 @@ body {
 
 .clicked {
     display: inline-block;
-    width: 10vw;
+    width: 8vw;
     height: 1.75vw;
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    background-color: #c3c7cb;
+    border: 4px solid transparent;
+    border-image: url(../assets/ui/win_border.png) 4 stretch;
     font-family: "MS-Sans";
+    font-size: 11px;
 }
