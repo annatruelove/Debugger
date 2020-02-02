@@ -38,9 +38,14 @@ $(document).ready(() => {
 const createGameScreen = function () {
     let codeContainer = $('#code');
     codeContainer.append(level1);
-    var animationOffset = gameContainer.height() - codeContainer.height();
     console.log(gameContainer.height());
     console.log(codeContainer.height());
+}
+
+
+const startGame = function () {
+    let codeContainer = $('#code');
+    var animationOffset = gameContainer.height() - codeContainer.height();
     codeContainer.parent().animate({
         "marginTop": animationOffset + "px"
     }, 45000, "linear", function () {
@@ -61,10 +66,10 @@ var createStatsContainer = function () {
 
 const createBugs = function () {
     setInterval(function () {
-            if (weGamin === true) {
-                gameContainer.append(makeBug());
-            } else {
+            if (weGamin === false) {
                 return;
+            } else {
+                gameContainer.append(makeBug());
             }
         },
         1000);

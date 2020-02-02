@@ -6,8 +6,12 @@ const startSequence = function() {
     gameContainer.hide();
     statsContainer.hide();
 
-    gameContainer.delay(3000).fadeIn(3000);
-    statsContainer.delay(3000).fadeIn(3000);
+    $('#startDebuggingButton').click(function(){
+        gameContainer.fadeIn(3000);
+        statsContainer.fadeIn(3000); 
+        gameContainer.append(makeFirstBug());
+    })
+
 
     
 }
