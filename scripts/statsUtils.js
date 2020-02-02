@@ -2,13 +2,17 @@ var userRAM = 8;
 var userPts = 0;
 
 var loseLife = function() {
-    userRAM = userRAM - 2;
-    return updateRAM(userRam);
+    let div = $('<div></div>');
+    div.append(updateRAM(-2));
+    div.append(updateScore(0));
+    return div;
 }
 
 var increaseScore = function(){
-    userPts = userPts + 1;
-    return updateScore(userPts);
+    let div = $('<div></div>');
+    div.append(updateRAM(0));
+    div.append(updateScore(1));
+    return div;
 }
 
 // 8GB max, increments in 2GB, so 4 lives total
@@ -31,7 +35,7 @@ var updateRAM = function(gb){
         div.append("Memory Remaining: 6GB ");
         ramImg.src = "assets/stats/6GB.png"
         div.append(ramImg);
-    } else if (userRAM == 8){
+    } else if (userRAM >= 8){
         div.append("Memory Remaining: 8GB ");
         ramImg.src = "assets/stats/8GB.png"
         div.append(ramImg);
