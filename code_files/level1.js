@@ -255,253 +255,254 @@ app.route = function route(path) {
 };
 
 `
-// app.engine = function engine(ext, fn) {
-//   if (typeof fn !== 'function') {
-//     throw new Error('callback function required');
-//   }
+const level2Code = `
+app.engine = function engine(ext, fn) {
+  if (typeof fn !== 'function') {
+    throw new Error('callback function required');
+  }
 
-//   // get file extension
-//   var extension = ext[0] !== '.'
-//     ? '.' + ext
-//     : ext;
+  // get file extension
+  var extension = ext[0] !== '.'
+    ? '.' + ext
+    : ext;
 
-//   // store engine
-//   this.engines[extension] = fn;
+  // store engine
+  this.engines[extension] = fn;
 
-//   return this;
-// };
+  return this;
+};
 
-// /**
-//  * Proxy to  with one added api feature. The _name_ parameter
-//  * can be an array of names.
-//  *
-//  * See the Router#param() docs for more details.
-//  *
-//  * @param {String|Array} name
-//  * @param {Function} fn
-//  * @return {app} for chaining
-//  * @public
-//  */
+/**
+ * Proxy to  with one added api feature. The _name_ parameter
+ * can be an array of names.
+ *
+ * See the Router#param() docs for more details.
+ *
+ * @param {String|Array} name
+ * @param {Function} fn
+ * @return {app} for chaining
+ * @public
+ */
 
-// app.param = function param(name, fn) {
-//   this.lazyrouter();
+app.param = function param(name, fn) {
+  this.lazyrouter();
 
-//   if (Array.isArray(name)) {
-//     for (var i = 0; i < name.length; i++) {
-//       this.param(name[i], fn);
-//     }
+  if (Array.isArray(name)) {
+    for (var i = 0; i < name.length; i++) {
+      this.param(name[i], fn);
+    }
 
-//     return this;
-//   }
+    return this;
+  }
 
-//   this._router.param(name, fn);
+  this._router.param(name, fn);
 
-//   return this;
-// };
+  return this;
+};
 
-// app.set = function set(setting, val) {
-//   if (arguments.length === 1) {
-//     // app.get(setting)
-//     return this.settings[setting];
-//   }
+app.set = function set(setting, val) {
+  if (arguments.length === 1) {
+    // app.get(setting)
+    return this.settings[setting];
+  }
 
-//   debug('set "%s" to %o', setting, val);
+  debug('set "%s" to %o', setting, val);
 
-//   // set value
-//   this.settings[setting] = val;
+  // set value
+  this.settings[setting] = val;
 
-//   // trigger matched settings
-//   switch (setting) {
-//     case 'etag':
-//       this.set('etag fn', compileETag(val));
-//       break;
-//     case 'query parser':
-//       this.set('query parser fn', compileQueryParser(val));
-//       break;
-//     case 'trust proxy':
-//       this.set('trust proxy fn', compileTrust(val));
+  // trigger matched settings
+  switch (setting) {
+    case 'etag':
+      this.set('etag fn', compileETag(val));
+      break;
+    case 'query parser':
+      this.set('query parser fn', compileQueryParser(val));
+      break;
+    case 'trust proxy':
+      this.set('trust proxy fn', compileTrust(val));
 
-//       // trust proxy inherit back-compat
-//       Object.defineProperty(this.settings, trustProxyDefaultSymbol, {
-//         configurable: true,
-//         value: false
-//       });
+      // trust proxy inherit back-compat
+      Object.defineProperty(this.settings, trustProxyDefaultSymbol, {
+        configurable: true,
+        value: false
+      });
 
-//       break;
-//   }
+      break;
+  }
 
-//   return this;
-// };
+  return this;
+};
 
-// app.path = function path() {
-//   return this.parent
-//     ? this.parent.path() + this.mountpath
-//     : '';
-// };
-
-
-// app.disabled = function disabled(setting) {
-//   return !this.set(setting);
-// };
-
-// /**
-//  *
-//  * @param {String} setting
-//  * @return {app} for chaining
-//  * @public
-//  */
-
-// app.enable = function enable(setting) {
-//   return this.set(setting, true);
-// };
-
-// /**
-//  *
-//  * @param {String} setting
-//  * @return {app} for chaining
-//  * @public
-//  */
-
-// app.disable = function disable(setting) {
-//   return this.set(setting, false);
-// };
+app.path = function path() {
+  return this.parent
+    ? this.parent.path() + this.mountpath
+    : '';
+};
 
 
+app.disabled = function disabled(setting) {
+  return !this.set(setting);
+};
 
-// methods.forEach(function(method){
-//   app[method] = function(path){
-//     if (method === 'get' && arguments.length === 1) {
-//       // app.get(setting)
-//       return this.set(path);
-//     }
+/**
+ *
+ * @param {String} setting
+ * @return {app} for chaining
+ * @public
+ */
 
-//     this.lazyrouter();
+app.enable = function enable(setting) {
+  return this.set(setting, true);
+};
 
-//     var route = this._router.route(path);
-//     route[method].apply(route, slice.call(arguments, 1));
-//     return this;
-//   };
-// });
+/**
+ *
+ * @param {String} setting
+ * @return {app} for chaining
+ * @public
+ */
 
-// /**
-//  * Special-cased "all" method, applying the given route,
-//  * middleware, and callback to _every_ HTTP method.
-//  *
-//  * @param {String} path
-//  * @param {Function} ...
-//  * @return {app} for chaining
-//  * @public
-//  */
-
-// app.all = function all(path) {
-//   this.lazyrouter();
-
-//   var route = this._router.route(path);
-//   var args = slice.call(arguments, 1);
-
-//   for (var i = 0; i < methods.length; i++) {
-//     route[methods[i]].apply(route, args);
-//   }
-
-//   return this;
-// };
-
-// // del -> delete alias
-
-// app.del = deprecate.function(app.delete, 'app.del: Use app.delete instead');
-
-// app.render = function render(name, options, callback) {
-//   var cache = this.cache;
-//   var done = callback;
-//   var engines = this.engines;
-//   var opts = options;
-//   var renderOptions = {};
-//   var view;
-
-//   // support callback function as second arg
-//   if (typeof options === 'function') {
-//     done = options;
-//     opts = {};
-//   }
-
-//   // merge app.locals
-//   merge(renderOptions, this.locals);
-
-//   // merge options._locals
-//   if (opts._locals) {
-//     merge(renderOptions, opts._locals);
-//   }
-
-//   // merge options
-//   merge(renderOptions, opts);
-
-//   // set .cache unless explicitly provided
-//   if (renderOptions.cache == null) {
-//     renderOptions.cache = this.enabled('view cache');
-//   }
-
-//   // primed cache
-//   if (renderOptions.cache) {
-//     view = cache[name];
-//   }
-
-//   // view
-//   if (!view) {
-//     var View = this.get('view');
-
-//     view = new View(name, {
-//       defaultEngine: this.get('view engine'),
-//       root: this.get('views'),
-//       engines: engines
-//     });
-
-//     if (!view.path) {
-//       var dirs = Array.isArray(view.root) && view.root.length > 1
-//         ? 'directories "' + view.root.slice(0, -1).join('", "') + '" or "' + view.root[view.root.length - 1] + '"'
-//         : 'directory "' + view.root + '"'
-//       var err = new Error('Failed to lookup view "' + name + '" in views ' + dirs);
-//       err.view = view;
-//       return done(err);
-//     }
-
-//     // prime the cache
-//     if (renderOptions.cache) {
-//       cache[name] = view;
-//     }
-//   }
-
-//   // render
-//   tryRender(view, renderOptions, done);
-// };
+app.disable = function disable(setting) {
+  return this.set(setting, false);
+};
 
 
-// app.listen = function listen() {
-//   var server = http.createServer(this);
-//   return server.listen.apply(server, arguments);
-// };
 
-// /**
-//  * Log error using console.error.
-//  *
-//  * @param {Error} err
-//  * @private
-//  */
+methods.forEach(function(method){
+  app[method] = function(path){
+    if (method === 'get' && arguments.length === 1) {
+      // app.get(setting)
+      return this.set(path);
+    }
 
-// function logerror(err) {
-//   /* istanbul ignore next */
-//   if (this.get('env') !== 'test') console.error(err.stack || err.toString());
-// }
+    this.lazyrouter();
 
-// /**
-//  * Try rendering a view.
-//  * @private
-//  */
+    var route = this._router.route(path);
+    route[method].apply(route, slice.call(arguments, 1));
+    return this;
+  };
+});
 
-// function tryRender(view, options, callback) {
-//   try {
-//     view.render(options, callback);
-//   } catch (err) {
-//     callback(err);
-//   }
-// }
-// `
+/**
+ * Special-cased "all" method, applying the given route,
+ * middleware, and callback to _every_ HTTP method.
+ *
+ * @param {String} path
+ * @param {Function} ...
+ * @return {app} for chaining
+ * @public
+ */
+
+app.all = function all(path) {
+  this.lazyrouter();
+
+  var route = this._router.route(path);
+  var args = slice.call(arguments, 1);
+
+  for (var i = 0; i < methods.length; i++) {
+    route[methods[i]].apply(route, args);
+  }
+
+  return this;
+};
+
+// del -> delete alias
+
+app.del = deprecate.function(app.delete, 'app.del: Use app.delete instead');
+
+app.render = function render(name, options, callback) {
+  var cache = this.cache;
+  var done = callback;
+  var engines = this.engines;
+  var opts = options;
+  var renderOptions = {};
+  var view;
+
+  // support callback function as second arg
+  if (typeof options === 'function') {
+    done = options;
+    opts = {};
+  }
+
+  // merge app.locals
+  merge(renderOptions, this.locals);
+
+  // merge options._locals
+  if (opts._locals) {
+    merge(renderOptions, opts._locals);
+  }
+
+  // merge options
+  merge(renderOptions, opts);
+
+  // set .cache unless explicitly provided
+  if (renderOptions.cache == null) {
+    renderOptions.cache = this.enabled('view cache');
+  }
+
+  // primed cache
+  if (renderOptions.cache) {
+    view = cache[name];
+  }
+
+  // view
+  if (!view) {
+    var View = this.get('view');
+
+    view = new View(name, {
+      defaultEngine: this.get('view engine'),
+      root: this.get('views'),
+      engines: engines
+    });
+
+    if (!view.path) {
+      var dirs = Array.isArray(view.root) && view.root.length > 1
+        ? 'directories "' + view.root.slice(0, -1).join('", "') + '" or "' + view.root[view.root.length - 1] + '"'
+        : 'directory "' + view.root + '"'
+      var err = new Error('Failed to lookup view "' + name + '" in views ' + dirs);
+      err.view = view;
+      return done(err);
+    }
+
+    // prime the cache
+    if (renderOptions.cache) {
+      cache[name] = view;
+    }
+  }
+
+  // render
+  tryRender(view, renderOptions, done);
+};
+
+
+app.listen = function listen() {
+  var server = http.createServer(this);
+  return server.listen.apply(server, arguments);
+};
+
+/**
+ * Log error using console.error.
+ *
+ * @param {Error} err
+ * @private
+ */
+
+function logerror(err) {
+  /* istanbul ignore next */
+  if (this.get('env') !== 'test') console.error(err.stack || err.toString());
+}
+
+/**
+ * Try rendering a view.
+ * @private
+ */
+
+function tryRender(view, options, callback) {
+  try {
+    view.render(options, callback);
+  } catch (err) {
+    callback(err);
+  }
+}
+`
