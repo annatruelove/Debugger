@@ -50,10 +50,13 @@ const startSequence = function() {
 }
 
 const burnItAll = function () {
+    $('#taskbarContainer').hide();
     document.body.style.backgroundImage = 'url("./assets/sprites/giphy.gif")';
     toggle(gameContainer, codeTask);
     toggle(statsContainer, statsTask);
     toggle(messagesContainer, messagesTask);
     $('#code').parent().stop();
+
+    $('#fired').show();
 
 }
