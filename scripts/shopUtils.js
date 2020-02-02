@@ -1,4 +1,4 @@
-var div = $('<div class="shop"></div>');
+var div = $('<div class="popUp"></div>');
 
 var createShop = function () {
     // Youre a winner text
@@ -12,18 +12,22 @@ var createShop = function () {
     div.append($('<br>'));
     div.append($('<br>'));
 
-
-    div.append("Points to spend: " + userPts);
-
     // Buy more lives
     var ramImg = new Image(75, 50);
     ramImg.src = "assets/ui/win_code_16.png";
     div.append(ramImg);
 
     // button trigger pop up div to be created 
+
+
+    div.append("Buy More Lives");
+    var input = document.createElement("INPUT");
+    input.setAttribute("type", "number");
+    div.append(input);
+
     var livesButton = document.createElement("button")
-    var livesText = document.createTextNode("Buy More Lives");
-    livesButton.onclick = function () { livesPopUp() };
+    var livesText = document.createTextNode("Purchase");
+    livesButton.onclick = function () { buyLives(input.value) };
     livesButton.appendChild(livesText);
 
     div.append(livesButton);
@@ -32,23 +36,18 @@ var createShop = function () {
 }
 
 // create pop up div
-var livesPopUp = function () {
-    var popUpDiv = $('<div class="popUp"></div>');
+var buyLives = function (inputValue) {
+    console.log("value: " + inputValue);
 
-    var input = document.createElement("INPUT");
-    input.setAttribute("type", "number");
-
-    popUpDiv.append(input);
-
-    div.append(popUpDiv);
-
-    var numLives = input.value;
-        
-    if (userPts < numLives) {
-        
+    if (userPts < inputValue) {
+        div.append("Insufficient Funds")
     } else {
-        userRam +=numLives * 2;
+        userRAM += inputValue * 2;
+        userPts -= inputValue;
+        statsContainer.empty();
+        statsContainer.append(updateRAM(0));
+        statsContainer.append(updateScore(0));
+
     }
 
-    
 }
