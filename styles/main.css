@@ -58,3 +58,16 @@ body {
 
 
 }
+
+.bug {
+    float: left;
+    z-index: 1000;
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    transition:all cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -webkit-transition:all cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    -moz-transition:all cubic-bezier(0.6, -0.28, 0.735, 0.045);
+
+    transform: rotate(20deg);
+}

@@ -21,4 +21,3 @@ var createMessage = function (type, message) {
     messageLabel.append(message);
     return messageLabel;
 }
-
