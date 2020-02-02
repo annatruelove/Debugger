@@ -1,5 +1,5 @@
 var playBackgroundMusic = function () {
-    var music = document.getElementById("intro_music");
+    var music = document.getElementById("full_music");
 
     var promise = music.play();
     if (promise !== undefined) {
@@ -9,6 +9,9 @@ var playBackgroundMusic = function () {
             console.log(error.name + " " + error.message);
         });
     }
+    $('#intro_music').pause();
+    $('#intro_music').pause();
+
 }
 
 var playFullMusic = function () {
