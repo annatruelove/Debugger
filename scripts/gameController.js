@@ -29,7 +29,7 @@ const createGameScreen = function () {
 
 var createMessagePane = function () {
     // initial email box 
-    messagesContainer.append(createMessage("email", startEmail));
+    messagesContainer.prepend(createMessage("email", startEmail));
 }
 
 var createStatsContainer = function () {

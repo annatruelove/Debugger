@@ -29,3 +29,6 @@ var createMessage = function (type, message) {
     return messageLabel;
 }
 
+var showMsgTab = function () {
+    alert();
+}

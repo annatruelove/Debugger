@@ -63,16 +63,17 @@
                 </div>
             </div>
             <div class="winTabSet">
-                <div class="winTab active">
+                <button class="winTab active" data="inbox" onclick="showMsgTab()">
                     Inbox
-                </div>
-                <div class="winTab">
+                </button>
+                <button class="winTab" data="group" onclick="showMsgTab()">
                     Group Message
-                </div>
+                </button>
             </div>
             <div class="winTabMain">
-                <div class="winInner" id="messageContent">
-
+                <div class="winInner" id="inboxContent">
+                </div>
+                <div class="winInner" id="groupContent">
                 </div>
             </div>
         </div>
