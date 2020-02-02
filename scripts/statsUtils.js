@@ -10,7 +10,6 @@ var loseLife = function () {
         // alert(" YOU LOSE BRUH LEAVEEEEE ");
         if (userPts < 50){
             burnItAll();
-            endRound();
         } else {
             endRound();
             showShop()    
