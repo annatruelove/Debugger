@@ -13,11 +13,12 @@ $(document).ready(() => {
     rootContainer = $('#rootContainer');
     statsContainerInner = $('#statsContainer .winInner');
     statsContainer = $('#statsContainer');
+    messagesContainer = $('#messagesContainer');
     messagesContainerInbox = $('#messagesContainer #inboxContent');
     shopContainer = $('#shopPopUp .winInner');
     shopPopUp = $('#shopPopUp');
     gameContainer = $('#gameContainer');
-    loginPage = $('#loginPage')
+    loginPage = $('#loginPage');
     createGameScreen();
     createMessagePane();
     createStatsContainer();

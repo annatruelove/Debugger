@@ -6,8 +6,10 @@ const startSequence = function() {
 
     loginPage.click(function() {
         loginPage.hide();
+        messagesContainer.fadeIn();
     }); 
 
+    messagesContainer.hide()
     gameContainer.hide();
     statsContainer.hide();
 
@@ -16,7 +18,7 @@ const startSequence = function() {
         statsContainer.fadeIn(3000); 
         gameContainer.append(makeFirstBug());
     })
-
+ 
 
 
 }
