@@ -5,6 +5,7 @@ var messagesContainerGroup;
 var statsContainer;
 var shopPopUp;
 var bugs = []
+let weGamin = true;
 
 $(document).ready(() => {
     rootContainer = $('#rootContainer');
@@ -37,7 +38,8 @@ const createGameScreen = function () {
     codeContainer.parent().animate({
         "marginTop": animationOffset + "px"
     }, 200000, "linear", function(){
-        // round end
+        alert("GOOD JOB!");
+        weGamin = false;
     });
     createBugs();
 }
@@ -53,7 +55,15 @@ var createStatsContainer = function () {
 }
 
 const createBugs = function(){
-    gameContainer.append(makeBug()); 
+    setInterval(function () {
+        if (weGamin === true){
+            gameContainer.append(makeBug()); 
+        } else{
+            return;
+        }
+    },
+    500);
+
 }
 
 var createShopContainer = function () {
