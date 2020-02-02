@@ -40,16 +40,12 @@ const startSequence = function() {
 
             messagesTask.click(function() {
                 toggle(messagesContainer, messagesTask);
-            })
+            })  
 
             $('#messageCloseButton').click(function() {
                 toggle(messagesContainer, messagesTask);
             })
-
-        
         }); 
-
-
     })
 }
 
