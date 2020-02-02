@@ -48,12 +48,8 @@ var updateRAM = function(gb){
 }
 
 var updateScore = function(newPts){
-
     userPts += newPts;
-
     var div = $('<div class="stats"></div>');
-
     div.append("Points: " + userPts);
-
     return div;
 }

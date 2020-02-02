@@ -5,6 +5,7 @@ const makeBug = function(){
     newBug.animate({
         top: '-60px'
     }, 5000,"linear", function(){
+        // WASSSSSSUP YA LOST A POINT
         newBug.remove();
         statsContainer.empty();
         statsContainer.append(loseLife())
@@ -16,6 +17,7 @@ const makeBug = function(){
         newBug.stop();
         
         newBug.fadeOut("slow", function(){
+            // SPLAT, POINT GAINED
             newBug.remove();
             statsContainer.empty();
             statsContainer.append(increaseScore())
