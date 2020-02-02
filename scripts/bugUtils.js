@@ -13,6 +13,7 @@ const makeBug = function () {
         newBug.remove();
         $('#statsContent').empty();
         $('#statsContent').append(loseLife())
+        populateMessage("bad","random");
     });
 
     newBug.click(function () {
@@ -45,7 +46,7 @@ const makeFirstBug = function() {
     newBug.animate({
         top: '218px'
     }, 5000, "linear", function(){
-
+        newBug.attr("src", "assets/sprites/beetle.png")
     });
     newBug.click(function(){
         newBug.attr("src", "assets/sprites/splat.png")
