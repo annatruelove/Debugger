@@ -63,7 +63,7 @@ const createBugs = function () {
                 return;
             }
         },
-        500);
+        1000);
 
 }
 
