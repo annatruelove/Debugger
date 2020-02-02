@@ -2,17 +2,20 @@ var rootContainer;
 var gameContainer;
 var messagesContainerInbox;
 var messagesContainerGroup;
+var statsContainerInner;
 var statsContainer;
 var shopPopUp;
 var bugs = []
-let weGamin = true;
+let weGamin = false;
 
 $(document).ready(() => {
     rootContainer = $('#rootContainer');
-    statsContainer = $('#statsContainer .winInner');
+    statsContainerInner = $('#statsContainer .winInner');
+    statsContainer = $('#statsContainer');
     messagesContainerInbox = $('#messagesContainer #inboxContent');
     shopContainer = $('#shopPopUp .winInner');
     shopPopUp = $('#shopPopUp');
+    gameContainer = $('#gameContainer');
     createGameScreen();
     createMessagePane();
     createStatsContainer();
@@ -26,10 +29,10 @@ $(document).ready(() => {
     Prism.highlightAll();
     $(".window").draggable({ handle: ".winHeader" });
     
+    runGame();
 })
 
 const createGameScreen = function () {
-    gameContainer = $('#gameContainer');
     let codeContainer = $('#code');
     codeContainer.append(level1);
     var animationOffset = gameContainer.height() - codeContainer.height();
@@ -49,8 +52,8 @@ var createMessagePane = function () {
 }
 
 var createStatsContainer = function () {
-    statsContainer.append(updateRAM(0));
-    statsContainer.append(updateScore(0));
+    statsContainerInner.append(updateRAM(0));
+    statsContainerInner.append(updateScore(0));
 }
 
 const createBugs = function(){

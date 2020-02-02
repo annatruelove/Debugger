@@ -252,6 +252,12 @@ body {
     text-shadow: 1px 0 black;
 }
 
+.clicked {
+    border-image: url(../assets/ui/win_inner_border.png) 2 stretch;
+    background-color: rgba(255, 255, 255, 0.753);
+    box-shadow: none;
+}
+
 .miniProgram * {
     vertical-align: middle;
 }
