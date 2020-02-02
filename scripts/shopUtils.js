@@ -5,7 +5,7 @@ var createShop = function () {
     // Youre a winner text
     div.append($('<br>'));
 
-    div.append("Congratulations, You're Today's Lucky Winner!");
+    div.append('<text class="rainbow-text">Congratulations, You\'re Today\'s Lucky Winner!');
     div.append($('<br>'));
     div.append($('<br>'));
 
@@ -21,6 +21,7 @@ var createShop = function () {
     div.append("Buy More Lives: 50pts/life");
     var input = document.createElement("INPUT");
     input.setAttribute("type", "number");
+    input.setAttribute("class", "winInner");
     div.append(input);
 
     var livesButton = document.createElement("button")
@@ -29,6 +30,7 @@ var createShop = function () {
         buyLives(input.value)
     };
     livesButton.appendChild(livesText);
+    livesButton.setAttribute("class", "window");
 
     div.append(livesButton);
 
@@ -50,6 +52,8 @@ var createShop = function () {
         increaseRadius()
     };
     swatButton.appendChild(swatText);
+    swatButton.setAttribute("class", "window");
+
 
     div.append(swatButton);
 

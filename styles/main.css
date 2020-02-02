@@ -264,3 +264,14 @@ body {
     height: 22px;
     width: initial;
 }
+
+.window button {
+    font-family: "MS-Sans";
+    font-size: 14px;
+}
+
+.rainbow-text {
+    background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
