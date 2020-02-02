@@ -1,507 +1,438 @@
 const level1Code = `
-/*!
- * express
- * Copyright(c) 2009-2013 TJ Holowaychuk
- * Copyright(c) 2013 Roman Shtylman
- * Copyright(c) 2014-2015 Douglas Christopher Wilson
- * MIT Licensed
- */
+var rootContainer;
+var gameContainer;
+var messagesContainerInbox;
+var messagesContainerGroup;
+var messagesContainer;
+var statsContainerInner;
+var statsContainer;
+var statsTask;
+var codeTask;
+var messagesTask;
+var loginPage;
+var shopPopUp;
+var bugs = [];
+var weGamin = true;
+var roundNumber = 1;
+var performance = "good";
+var userRAM = 8;
 
-'use strict';
+$(document).ready(() => {
+    rootContainer = $('#rootContainer');
+    statsContainerInner = $('#statsContainer .winInner');
+    statsContainer = $('#statsContainer');
+    messagesContainerInbox = $('#inboxContent');
+    messagesContainerGroup = $('#groupContent');
+    messagesContainer = $('#messagesContainer');
+    shopContainer = $('#shopPopUp .winInner');
+    shopPopUp = $('#shopPopUp');
+    gameContainer = $('#gameContainer');
+    loginPage = $('#loginPage')
+    loginButt = $('#loginButt');
+    statsTask = $('#statstask');
+    codeTask = $('#codetask');
+    messagesTask = $('#messagestask')
+    createMessagePane();
+    createStatsContainer();
+    // this will be called when a game is over
+    createShopContainer();
 
-/**
- * Module dependencies.
- * @private
- */
+    hideShop(); // use to hide shop
+    // showShop(); // use to show shop
 
-var finalhandler = require('finalhandler');
-var Router = require('./router');
-var methods = require('methods');
-var middleware = require('./middleware/init');
-var query = require('./middleware/query');
-var debug = require('debug')('express:application');
-var View = require('./view');
-var http = require('http');
-var compileETag = require('./utils').compileETag;
-var compileQueryParser = require('./utils').compileQueryParser;
-var compileTrust = require('./utils').compileTrust;
-var deprecate = require('depd')('express');
-var flatten = require('array-flatten');
-var merge = require('utils-merge');
-var resolve = require('path').resolve;
-var setPrototypeOf = require('setprototypeof')
-var slice = Array.prototype.slice;
-
-/**
- * Application prototype.
- */
-
-var app = exports = module.exports = {};
-
-/**
- * Variable for trust proxy inheritance back-compat
- * @private
- */
-
-var trustProxyDefaultSymbol = '@@symbol:trust_proxy_default';
-
-/**
- * Initialize the server.
- *
- *   - setup default configuration
- *   - setup default middleware
- *   - setup route reflection methods
- *
- * @private
- */
-
-app.init = function init() {
-  this.cache = {};
-  this.engines = {};
-  this.settings = {};
-
-  this.defaultConfiguration();
-};
-
-/**
- * Initialize application configuration.
- * @private
- */
-
-app.defaultConfiguration = function defaultConfiguration() {
-  var env = process.env.NODE_ENV || 'development';
-
-  // default settings
-  this.enable('x-powered-by');
-  this.set('etag', 'weak');
-  this.set('env', env);
-  this.set('query parser', 'extended');
-  this.set('subdomain offset', 2);
-  this.set('trust proxy', false);
-
-  // trust proxy inherit back-compat
-  Object.defineProperty(this.settings, trustProxyDefaultSymbol, {
-    configurable: true,
-    value: true
-  });
-
-  debug('booting in %s mode', env);
-
-  this.on('mount', function onmount(parent) {
-    // inherit trust proxy
-    if (this.settings[trustProxyDefaultSymbol] === true
-      && typeof parent.settings['trust proxy fn'] === 'function') {
-      delete this.settings['trust proxy'];
-      delete this.settings['trust proxy fn'];
-    }
-
-    // inherit protos
-    setPrototypeOf(this.request, parent.request)
-    setPrototypeOf(this.response, parent.response)
-    setPrototypeOf(this.engines, parent.engines)
-    setPrototypeOf(this.settings, parent.settings)
-  });
-
-  // setup locals
-  this.locals = Object.create(null);
-
-  // top-most app is mounted at /
-  this.mountpath = '/';
-
-  // default locals
-  this.locals.settings = this.settings;
-
-  // default configuration
-  this.set('view', View);
-  this.set('views', resolve('views'));
-  this.set('jsonp callback name', 'callback');
-
-  if (env === 'production') {
-    this.enable('view cache');
-  }
-
-  Object.defineProperty(this, 'router', {
-    get: function() {
-      throw new Error('\'app.router\' is deprecated!\nPlease see the 3.x to 4.x migration guide for details on how to update your app.');
-    }
-  });
-};
-
-/**
- * lazily adds the base router if it has not yet been added.
- *
- * We cannot add the base router in the defaultConfiguration because
- * it reads app settings which might be set after that has run.
- *
- * @private
- */
-app.lazyrouter = function lazyrouter() {
-  if (!this._router) {
-    this._router = new Router({
-      caseSensitive: this.enabled('case sensitive routing'),
-      strict: this.enabled('strict routing')
+    $(".window").draggable({
+        handle: ".winHeader"
     });
 
-    this._router.use(query(this.get('query parser fn')));
-    this._router.use(middleware.init(this));
-  }
-};
+    runGame();
 
-/**
- * Dispatch a req, res pair into the application. Starts pipeline processing.
- *
- * If no callback is provided, then default error handlers will respond
- * in the event of an error bubbling through the stack.
- *
- * @private
- */
+})
 
-app.handle = function handle(req, res, callback) {
-  var router = this._router;
 
-  // final handler
-  var done = callback || finalhandler(req, res, {
-    env: this.get('env'),
-    onerror: logerror.bind(this)
-  });
-
-  // no routes
-  if (!router) {
-    debug('no routes defined on app');
-    done();
-    return;
-  }
-
-  router.handle(req, res, done);
-};
-
-/**
- * Proxy to add middleware to the app router.
- * See Router#use() documentation for details.
- *
- * If the _fn_ parameter is an express app, then it will be
- * mounted at the _route_ specified.
- *
- * @public
- */
-
-app.use = function use(fn) {
-  var offset = 0;
-  var path = '/';
-
-  // default path to '/'
-  // disambiguate app.use([fn])
-  if (typeof fn !== 'function') {
-    var arg = fn;
-
-    while (Array.isArray(arg) && arg.length !== 0) {
-      arg = arg[0];
-    }
-
-    // first arg is the path
-    if (typeof arg !== 'function') {
-      offset = 1;
-      path = fn;
-    }
-  }
-
-  var fns = flatten(slice.call(arguments, offset));
-
-  if (fns.length === 0) {
-    throw new TypeError('app.use() requires a middleware function')
-  }
-
-  // setup router
-  this.lazyrouter();
-  var router = this._router;
-
-  fns.forEach(function (fn) {
-    // non-express app
-    if (!fn || !fn.handle || !fn.set) {
-      return router.use(path, fn);
-    }
-
-    debug('.use app under %s', path);
-    fn.mountpath = path;
-    fn.parent = this;
-
-    // restore .app property on req and res
-    router.use(path, function mounted_app(req, res, next) {
-      var orig = req.app;
-      fn.handle(req, res, function (err) {
-        setPrototypeOf(req, orig.request)
-        setPrototypeOf(res, orig.response)
-        next(err);
-      });
+const setLevel = function () {
+    let codeContainer = $('#code');
+    codeContainer.empty();
+    codeContainer.append(getScript(roundNumber));
+    codeContainer.parent().css({
+        "marginTop": "0px"
     });
+    Prism.highlightAll();
 
-    // mounted an app
-    fn.emit('mount', this);
-  }, this);
+}
 
-  return this;
-};
 
-/*
- * Routes are isolated middleware stacks for specific paths.
- * See the Route api docs for details.
- *
- * @public
- */
+const startGame = function () {
+    let codeContainer = $('#code');
+    var animationOffset = gameContainer.height() - codeContainer.height();
+    weGamin = true;
+    console.log("game started");
+    codeContainer.parent().animate({
+        "marginTop": animationOffset + "px"
+    }, 10000, "linear", function () {
+        calcPerformance();
+        endRound(performance);
+    });
+    createBugs();
+}
 
-app.route = function route(path) {
-  this.lazyrouter();
-  return this._router.route(path);
-};
+const endRound = function (performance) {
+    weGamin = false;
+    $('.bug').stop();
+    $('.bug').remove();
+    $('#code').parent().stop();
 
+    if (roundNumber === 3) {
+        alert(" you won the game ? ");
+    }
+    roundNumber++;
+    setLevel();
+    $('#startDebuggingButton').unbind();
+    $('#startDebuggingButton').prop('disabled', false);
+    $('#startDebuggingButton').click(function () {
+        $('#startDebuggingButton').prop('disabled', true);
+        startGame()
+    })
+    populateMessage(performance, "endround");
+
+    setTimeout(function () {
+        showShop();
+    }, 3000)
+
+}
+
+var createMessagePane = function () {
+    // initial email box 
+    createMessage("email", startEmail);
+}
+
+var createStatsContainer = function () {
+    statsContainerInner.append(updateRAM(0));
+    statsContainerInner.append(updateScore(0));
+}
+
+const createBugs = function () {
+    const interval = setInterval(function () {
+            if (weGamin === false) {
+                clearInterval(interval);
+            } else {
+                gameContainer.append(makeBug());
+            }
+        },
+        levelSpeed(roundNumber));
+}
+
+var createShopContainer = function () {
+    setUpShop();
+}
+
+var hideShop = function () {
+    shopPopUp.hide();
+}
+
+var showShop = function () {
+    shopPopUp.show();
+}
+
+var toggle = function (container, tab) {
+    if (container.is(":visible")) {
+        container.hide();
+        tab.attr("class", "miniProgram");
+    } else {
+        container.show();
+        tab.attr("class", "miniProgram clicked");
+    }
+}
+
+var calcPerformance = function () {
+    if (userRAM >= 6) {
+        performance = "good";
+    } else if (userRAM >= 2) {
+        performance = "average";
+    } else {
+        performance = "bad";
+    }
+}
 `
-// app.engine = function engine(ext, fn) {
-//   if (typeof fn !== 'function') {
-//     throw new Error('callback function required');
-//   }
+const level2Code = `
+var userPts = 0;
 
-//   // get file extension
-//   var extension = ext[0] !== '.'
-//     ? '.' + ext
-//     : ext;
+var loseLife = function () {
+    let div = $('<div></div>');
+    div.append(updateRAM(-2));
+    div.append(updateScore(0));
+    if (userRAM == 0) {
+        performance = "bad";
+        // GAME LOSE AREA
+        // alert(" YOU LOSE BRUH LEAVEEEEE ");
+        if (userPts < 10){
+            burnItAll();
+        } else {
+            endRound(performance);
+            showShop()    
+        }
+    }
+    return div;
+}
 
-//   // store engine
-//   this.engines[extension] = fn;
+var increaseScore = function () {
+    let div = $('<div></div>');
+    div.append(updateRAM(0));
+    div.append(updateScore(1));
+    return div;
+}
 
-//   return this;
-// };
+// 8GB max, increments in 2GB, so 4 lives total
+var updateRAM = function (gb) {
+    userRAM += gb;
 
-// /**
-//  * Proxy to  with one added api feature. The _name_ parameter
-//  * can be an array of names.
-//  *
-//  * See the Router#param() docs for more details.
-//  *
-//  * @param {String|Array} name
-//  * @param {Function} fn
-//  * @return {app} for chaining
-//  * @public
-//  */
+    var div = $('<div class="stats"></div>');
+    var ramImg = new Image(75, 50);
 
-// app.param = function param(name, fn) {
-//   this.lazyrouter();
+    if (userRAM == 2) {
+        div.append("Memory Remaining: 2GB ");
+        ramImg.src = "assets/stats/2GB.png";
+        div.append(ramImg);
+    } else if (userRAM == 4) {
+        div.append("Memory Remaining: 4GB ");
+        ramImg.src = "assets/stats/4GB.png";
+        div.append(ramImg);
+    } else if (userRAM == 6) {
+        div.append("Memory Remaining: 6GB ");
+        ramImg.src = "assets/stats/6GB.png";
+        div.append(ramImg);
+    } else if (userRAM >= 8) {
+        div.append("Memory Remaining: 8GB ");
+        ramImg.src = "assets/stats/8GB.png";
+        div.append(ramImg);
+    } else if (userRAM <= 0) {
+        div.append("Memory Remaining: 0GB ");
+        ramImg.src = "assets/stats/0GB.png"
+        div.append(ramImg);
+    }
 
-//   if (Array.isArray(name)) {
-//     for (var i = 0; i < name.length; i++) {
-//       this.param(name[i], fn);
-//     }
+    return div;
+}
 
-//     return this;
-//   }
+var updateScore = function (newPts) {
+    userPts += newPts;
+    var div = $('<div class="stats"></div>');
+    div.append("Points: " + userPts);
+    return div;
+}
 
-//   this._router.param(name, fn);
+var div = $('<div class="popUp"></div>');
 
-//   return this;
-// };
+function setUpShop() {
+    $("#swatterItem .shopImg").on("click", increaseRadius);
+    $("#sprayItem .shopImg").on("click", increaseRadius);
+    $("#livesItem .shopImg").on("click", null, 1, buyLives);
+}
 
-// app.set = function set(setting, val) {
-//   if (arguments.length === 1) {
-//     // app.get(setting)
-//     return this.settings[setting];
-//   }
+// create pop up div
+var buyLives = function (event) {
+    let inputValue = event.data;
+    console.log("value: " + inputValue);
 
-//   debug('set "%s" to %o', setting, val);
+    if (userPts < inputValue) {
+        div.append("Insufficient Funds");
+    } else {
+        userRAM += inputValue * 2;
+        userPts -= inputValue * 50;
+        statsContainer.empty();
+        statsContainer.append(updateRAM(0));
+        statsContainer.append(updateScore(0));
+    }
+}
 
-//   // set value
-//   this.settings[setting] = val;
+var increaseRadius = function () {
 
-//   // trigger matched settings
-//   switch (setting) {
-//     case 'etag':
-//       this.set('etag fn', compileETag(val));
-//       break;
-//     case 'query parser':
-//       this.set('query parser fn', compileQueryParser(val));
-//       break;
-//     case 'trust proxy':
-//       this.set('trust proxy fn', compileTrust(val));
+    //increase the radius
+    console.log("increasing radius");
+    // subtract points
+    if (userPts < 10) {
+        div.append("Insufficient Funds");
+    } else {
+        statsContainer.empty();
+        statsContainer.append(updateRAM(0));
+        statsContainer.append(updateScore(-10));
+    }
+}
 
-//       // trust proxy inherit back-compat
-//       Object.defineProperty(this.settings, trustProxyDefaultSymbol, {
-//         configurable: true,
-//         value: false
-//       });
+startLightAnimation = function () {
+    $('#shopPopUp').animate({
+        'border-image': 'linear-gradient(to bottom right, #b827fc 100%, #2c90fc 75%, #b8fd33 50%, #fec837 25%, #fd1892 0%)'
+    }, "slow", function () {
+        startDarkAnimation();
+    });
 
-//       break;
-//   }
+}
 
-//   return this;
-// };
+startDarkAnimation = function () {
+    $('#shopPopUp').animate({
+        'border-image': 'linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%)'
+    }, "fast", function () {
+        startLightAnimation();
+    });
 
-// app.path = function path() {
-//   return this.parent
-//     ? this.parent.path() + this.mountpath
-//     : '';
-// };
+}
+`
 
+level3Code = `
+const runGame = function() {
+  startSequence();
+}
 
-// app.disabled = function disabled(setting) {
-//   return !this.set(setting);
-// };
+const startSequence = function() {
 
-// /**
-//  *
-//  * @param {String} setting
-//  * @return {app} for chaining
-//  * @public
-//  */
+  loginButt.click(function() {
+      loginPage.hide();
+      $("#taskbarContainer").show();
+      messagesContainer.fadeIn();
+  }); 
+  setLevel(1)
 
-// app.enable = function enable(setting) {
-//   return this.set(setting, true);
-// };
+  messagesContainer.hide()
+  gameContainer.hide();
+  statsContainer.hide();
 
-// /**
-//  *
-//  * @param {String} setting
-//  * @return {app} for chaining
-//  * @public
-//  */
+  $('#startDebuggingButton').click(function(){
+      $('#startDebuggingButton').prop('disabled', true);   
+      gameContainer.fadeIn(1000);
+      statsContainer.fadeIn(1000, function() {
+          gameContainer.append(makeFirstBug());
+          statsTask.attr("class", "miniProgram clicked");
+          codeTask.attr("class", "miniProgram clicked");
 
-// app.disable = function disable(setting) {
-//   return this.set(setting, false);
-// };
+          statsTask.click(function() {
+              toggle(statsContainer, statsTask);
+          })
 
+          $('#statsCloseButton').click(function() {
+              toggle(statsContainer, statsTask);
+          })
 
+          codeTask.click(function() {
+              toggle(gameContainer, codeTask);
+          })
 
-// methods.forEach(function(method){
-//   app[method] = function(path){
-//     if (method === 'get' && arguments.length === 1) {
-//       // app.get(setting)
-//       return this.set(path);
-//     }
+          $('#gameCloseButton').click(function() {
+              toggle(gameContainer, codeTask);
+          })
 
-//     this.lazyrouter();
+          messagesTask.click(function() {
+              toggle(messagesContainer, messagesTask);
+          })  
 
-//     var route = this._router.route(path);
-//     route[method].apply(route, slice.call(arguments, 1));
-//     return this;
-//   };
-// });
+          $('#messageCloseButton').click(function() {
+              toggle(messagesContainer, messagesTask);
+          })
+      }); 
+  })
+}
 
-// /**
-//  * Special-cased "all" method, applying the given route,
-//  * middleware, and callback to _every_ HTTP method.
-//  *
-//  * @param {String} path
-//  * @param {Function} ...
-//  * @return {app} for chaining
-//  * @public
-//  */
+const burnItAll = function () {
+  $('#taskbarContainer').hide();
+  document.body.style.backgroundImage = 'url("./assets/sprites/giphy.gif")';
+  toggle(gameContainer, codeTask);
+  toggle(statsContainer, statsTask);
+  toggle(messagesContainer, messagesTask);
+  weGamin = false;
 
-// app.all = function all(path) {
-//   this.lazyrouter();
+  $('.bug').stop();
+  $('.bug').remove();
+  $('#code').parent().stop();
 
-//   var route = this._router.route(path);
-//   var args = slice.call(arguments, 1);
+  throwErrorMessages();
 
-//   for (var i = 0; i < methods.length; i++) {
-//     route[methods[i]].apply(route, args);
-//   }
+}
 
-//   return this;
-// };
+const throwErrorMessages = function() {  
+  for (let i = 0; i < 50; i++) {
+      $('body').delay(100).append('<img id="pic" src="assets/ui/win_error_window.png"></img>');
+     // document.getElementById('pic').style.top = numberRandomizer() + 'px';
+      //document.getElementById('pic').style.left = numberRandomizer() + 'px';
+  }
+}
 
-// // del -> delete alias
+function numberRandomizer(){
+  var x = Math.floor((Math.random() * 100)); 
+  return x;
+}
 
-// app.del = deprecate.function(app.delete, 'app.del: Use app.delete instead');
+var populateMessage = function (performance, gamestatus) {
+  // access messageBank 
 
-// app.render = function render(name, options, callback) {
-//   var cache = this.cache;
-//   var done = callback;
-//   var engines = this.engines;
-//   var opts = options;
-//   var renderOptions = {};
-//   var view;
+  var messages = "";
+  if (performance === "good") {
+      var messages = goodMap.get(gamestatus);
+  } else if (performance === "average") {
+      var messages = averageMap.get(gamestatus);
+  } else if (performance === "bad") {
+      var messages = badMap.get(gamestatus);
+  }
 
-//   // support callback function as second arg
-//   if (typeof options === 'function') {
-//     done = options;
-//     opts = {};
-//   }
+  var message = messages[Math.floor(Math.random() * messages.length)];
 
-//   // merge app.locals
-//   merge(renderOptions, this.locals);
+  var splitMessage = message.split(":");
+  createMessage(splitMessage[0], splitMessage[1]);
+}
 
-//   // merge options._locals
-//   if (opts._locals) {
-//     merge(renderOptions, opts._locals);
-//   }
+// type is email or group, message is the actual message 
+var createMessage = function (type, message) {
+  var messageLabel;
+  if (type === "email") {
+      messageLabel = $('<div class="email"><b>BOSS:</b>  </div>');
+      messageLabel.append(message);
+      messagesContainerInbox.prepend(messageLabel);
+      messagesContainerInbox.prepend('<hr>');
+  } else if (type === "group") {
+      messageLabel = $('<div class="group"></div>');
+      messageLabel.append(message);
+      messagesContainerGroup.prepend(messageLabel);
+      messagesContainerGroup.prepend('<hr>');
+  }
+}
 
-//   // merge options
-//   merge(renderOptions, opts);
+var showMsgTab = function (id) {
+  $("#messagesContainer .winInner").hide();
+  $(id).show();
+  $("#messagesContainer .winTab").removeClass("active");
+  $(id + "Tab").addClass("active");
+}
 
-//   // set .cache unless explicitly provided
-//   if (renderOptions.cache == null) {
-//     renderOptions.cache = this.enabled('view cache');
-//   }
+var playBackgroundMusic = function () {
+  var music = document.getElementById("background_music");
 
-//   // primed cache
-//   if (renderOptions.cache) {
-//     view = cache[name];
-//   }
+  var promise = music.play();
+  if (promise !== undefined) {
+      promise.then(_ => {
+          music.play();
+      }).catch(error => {
+          console.log(error.name + " " + error.message);
+      });
+  }
+}
 
-//   // view
-//   if (!view) {
-//     var View = this.get('view');
+const getScript = function (level) {
+  switch (level) {
+      case 1:
+          return level1Code;
+      case 2:
+          return level2Code;
+      case 3:
+          return level3Code;
+  }
+}
 
-//     view = new View(name, {
-//       defaultEngine: this.get('view engine'),
-//       root: this.get('views'),
-//       engines: engines
-//     });
+const levelSpeed = function(level){
+  switch (level) {
+      case 1:
+          return 1000;
+      case 2:
+          return 850;
+      case 3:
+          return 750;
+  }
 
-//     if (!view.path) {
-//       var dirs = Array.isArray(view.root) && view.root.length > 1
-//         ? 'directories "' + view.root.slice(0, -1).join('", "') + '" or "' + view.root[view.root.length - 1] + '"'
-//         : 'directory "' + view.root + '"'
-//       var err = new Error('Failed to lookup view "' + name + '" in views ' + dirs);
-//       err.view = view;
-//       return done(err);
-//     }
-
-//     // prime the cache
-//     if (renderOptions.cache) {
-//       cache[name] = view;
-//     }
-//   }
-
-//   // render
-//   tryRender(view, renderOptions, done);
-// };
-
-
-// app.listen = function listen() {
-//   var server = http.createServer(this);
-//   return server.listen.apply(server, arguments);
-// };
-
-// /**
-//  * Log error using console.error.
-//  *
-//  * @param {Error} err
-//  * @private
-//  */
-
-// function logerror(err) {
-//   /* istanbul ignore next */
-//   if (this.get('env') !== 'test') console.error(err.stack || err.toString());
-// }
-
-// /**
-//  * Try rendering a view.
-//  * @private
-//  */
-
-// function tryRender(view, options, callback) {
-//   try {
-//     view.render(options, callback);
-//   } catch (err) {
-//     callback(err);
-//   }
-// }
-// `
+}
+`

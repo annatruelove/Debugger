@@ -50,7 +50,11 @@ $(document).ready(() => {
 
 const setLevel = function () {
     let codeContainer = $('#code');
+    codeContainer.empty();
     codeContainer.append(getScript(roundNumber));
+    codeContainer.parent().css({
+        "marginTop": "0px"
+    });
     Prism.highlightAll();
 
 }
@@ -59,25 +63,39 @@ const setLevel = function () {
 const startGame = function () {
     let codeContainer = $('#code');
     var animationOffset = gameContainer.height() - codeContainer.height();
+    weGamin = true;
+    console.log("game started");
     codeContainer.parent().animate({
         "marginTop": animationOffset + "px"
-    }, 20000, "linear", function () {
+    }, 10000, "linear", function () {
         calcPerformance();
-        endRound(performance);     
+        endRound(performance);
     });
     createBugs();
 }
 
-const endRound = function(performance){
+const endRound = function (performance) {
     weGamin = false;
     $('.bug').stop();
     $('.bug').remove();
     $('#code').parent().stop();
+
+    if (roundNumber === 3) {
+        alert(" you won the game ? ");
+    }
+    roundNumber++;
+    setLevel();
+    $('#startDebuggingButton').unbind();
+    $('#startDebuggingButton').prop('disabled', false);
+    $('#startDebuggingButton').click(function () {
+        $('#startDebuggingButton').prop('disabled', true);
+        startGame()
+    })
     populateMessage(performance, "endround");
-    
-    setTimeout(function() {
+
+    setTimeout(function () {
         showShop();
-        },3000)
+    }, 3000)
 
 }
 
@@ -92,9 +110,9 @@ var createStatsContainer = function () {
 }
 
 const createBugs = function () {
-    setInterval(function () {
+    const interval = setInterval(function () {
             if (weGamin === false) {
-                return;
+                clearInterval(interval);
             } else {
                 gameContainer.append(makeBug());
             }
@@ -114,7 +132,7 @@ var showShop = function () {
     shopPopUp.show();
 }
 
-var toggle = function(container, tab) {
+var toggle = function (container, tab) {
     if (container.is(":visible")) {
         container.hide();
         tab.attr("class", "miniProgram");
@@ -124,7 +142,7 @@ var toggle = function(container, tab) {
     }
 }
 
-var calcPerformance = function() {
+var calcPerformance = function () {
     if (userRAM >= 6) {
         performance = "good";
     } else if (userRAM >= 2) {

@@ -14,9 +14,9 @@ const levelSpeed = function(level){
         case 1:
             return 1000;
         case 2:
-            return 750;
+            return 850;
         case 3:
-            return 500;
+            return 750;
     }
 
 }
