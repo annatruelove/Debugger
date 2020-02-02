@@ -65,7 +65,11 @@ const startGame = function () {
         calcPerformance();
         endRound(performance);     
     });
-    createBugs();
+    calcPerformance();
+    populateMessage(performance, "beginround");
+    setTimeout(function() {
+        createBugs();
+        },3000)
 }
 
 const endRound = function(performance){

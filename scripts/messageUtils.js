@@ -1,3 +1,4 @@
+var firstEmail = true;
 var populateMessage = function (performance, gamestatus) {
     // access messageBank 
 
@@ -24,6 +25,10 @@ var createMessage = function (type, message) {
         messageLabel.append(message);
         messagesContainerInbox.prepend(messageLabel);
         messagesContainerInbox.prepend('<hr>');
+        if (!firstEmail) {
+            playEmail();
+        }
+        firstEmail = false;
     } else if (type === "group") {
         messageLabel = $('<div class="group"></div>');
         messageLabel.append(message);

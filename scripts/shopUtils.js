@@ -8,6 +8,7 @@ function setUpShop() {
 
 // create pop up div
 var buyLives = function (event) {
+    playPurchaseSound();
     let inputValue = event.data;
     console.log("value: " + inputValue);
 
@@ -23,7 +24,7 @@ var buyLives = function (event) {
 }
 
 var increaseRadius = function () {
-
+    playPurchaseSound();
     //increase the radius
     console.log("increasing radius");
     // subtract points

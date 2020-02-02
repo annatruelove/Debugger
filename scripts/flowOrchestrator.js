@@ -8,6 +8,7 @@ const startSequence = function() {
         loginPage.hide();
         $("#taskbarContainer").show();
         messagesContainer.fadeIn();
+        playEmail();
     }); 
     setLevel(1)
 

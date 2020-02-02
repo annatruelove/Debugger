@@ -1,9 +1,15 @@
 var userPts = 0;
+var messageCounter = 0;
 
 var loseLife = function () {
     let div = $('<div></div>');
     div.append(updateRAM(-2));
     div.append(updateScore(0));
+    messageCounter += 1;
+    if (messageCounter % 2 == 0) {
+        calcPerformance();
+        populateMessage(performance, "random");
+    }
     if (userRAM == 0) {
         performance = "bad";
         // GAME LOSE AREA
@@ -35,6 +41,7 @@ var updateRAM = function (gb) {
     if (userRAM == 2) {
         div.append("Memory Remaining: 2GB ");
         ramImg.src = "assets/stats/2GB.png";
+        playFanSound();
         div.append(ramImg);
     } else if (userRAM == 4) {
         div.append("Memory Remaining: 4GB ");
