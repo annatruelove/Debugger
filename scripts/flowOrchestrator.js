@@ -14,8 +14,8 @@ const startSequence = function() {
 
     $('#startDebuggingButton').click(function(){
         $('#startDebuggingButton').prop('disabled', true);   
-        gameContainer.fadeIn(3000);
-        statsContainer.fadeIn(3000, function() {
+        gameContainer.fadeIn(1000);
+        statsContainer.fadeIn(1000, function() {
             gameContainer.append(makeFirstBug());
             statsTask.attr("class", "miniProgram clicked");
             codeTask.attr("class", "miniProgram clicked");
