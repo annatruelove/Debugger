@@ -9,9 +9,6 @@ var playBackgroundMusic = function () {
             console.log(error.name + " " + error.message);
         });
     }
-    $('#intro_music').pause();
-    $('#intro_music').pause();
-
 }
 
 var playFullMusic = function () {
@@ -34,6 +31,24 @@ var playFullMusic = function () {
 
 var playFailureMusic = function () {
     var music = document.getElementById("fail");
+
+    var audios = document.getElementsByTagName('audio');
+    for (var i = 0, len = audios.length; i < len; i++) {
+        audios[i].pause();
+    }
+
+    var promise = music.play();
+    if (promise !== undefined) {
+        promise.then(_ => {
+            music.play();
+        }).catch(error => {
+            console.log(error.name + " " + error.message);
+        });
+    }
+}
+
+var playWinMusic = function () {
+    var music = document.getElementById("win_music");
 
     var audios = document.getElementsByTagName('audio');
     for (var i = 0, len = audios.length; i < len; i++) {

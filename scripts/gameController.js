@@ -67,7 +67,7 @@ const startGame = function () {
     console.log("game started");
     codeContainer.parent().animate({
         "marginTop": animationOffset + "px"
-    }, 45000, "linear", function () {
+    }, 5000, "linear", function () {
         calcPerformance();
         endRound(performance);
     });
@@ -86,7 +86,13 @@ const endRound = function (performance) {
         // won the game! 
         calcPerformance();
         populateMessage(performance, "endgame");
+        playWinMusic();
+        gameContainer.hide();
+        statsContainer.hide();
+        shopContainer.hide();
         $('#win').show();
+        // SHOW PIPES HERE
+
     }
     roundNumber++;
     setLevel();
