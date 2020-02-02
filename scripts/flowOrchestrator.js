@@ -67,11 +67,13 @@ const burnItAll = function () {
 
 }
 
-const throwErrorMessages = function() {  
+const throwErrorMessages = function() { 
+    var w = window.innerWidth;
+    var h = window.innerHeight; 
     for (let i = 0; i < 50; i++) {
-        $('body').delay(100).append('<img id="pic" src="assets/ui/win_error_window.png"></img>');
-       // document.getElementById('pic').style.top = numberRandomizer() + 'px';
-        //document.getElementById('pic').style.left = numberRandomizer() + 'px';
+        var xOffset = Math.floor(Math.random() * w) + 1;
+        var yOffset = Math.floor(Math.random() * h) + 1;
+        $('body').delay(100).append('<img class="endError" style="position: absolute; top: ' + xOffset + 'px; left: ' + yOffset + 'px;" src="assets/ui/win_error_windowww.png"></img>');
     }
 }
 
