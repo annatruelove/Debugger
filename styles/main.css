@@ -4,20 +4,6 @@ body {
     image-rendering: pixelated;
 }
 
-
-#statsContainer {
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    font-size: xx-large;
-    padding: 50px 0;
-}
-
-#gameContainer {
-    height: 60vh;
-    /* padding: 4vh 4vw; */
-    overflow: hidden;
-}
-
 @font-face {
         font-family: "MS-Sans";
         src: url("../assets/font/MS-Sans-Serif.ttf");
@@ -100,6 +86,13 @@ body {
 
 #messagesContainer {
     overflow:hidden;
+}
+
+#statsContainer {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: xx-large;
+    padding: 50px 0;
 }
 
 .email {

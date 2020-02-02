@@ -12,7 +12,7 @@ $(document).ready(() => {
     createMessagePane();
     createStatsContainer();
     // testing this function
-    updateRAM(-4);
+    updateRAM(-6);
     Prism.highlightAll();
     $(".window").draggable({ handle: ".winHeader" });
 })
