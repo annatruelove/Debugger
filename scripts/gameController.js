@@ -21,7 +21,7 @@ $(document).ready(() => {
     createShopContainer();
     
     hideShop(); // use to hide shop
-    showShop(); // use to show shop
+    //showShop(); // use to show shop
 
     Prism.highlightAll();
     $(".window").draggable({ handle: ".winHeader" });
