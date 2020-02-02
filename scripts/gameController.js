@@ -37,7 +37,7 @@ $(document).ready(() => {
     createShopContainer();
 
     hideShop(); // use to hide shop
-    //showShop(); // use to show shop
+    // showShop(); // use to show shop
 
     $(".window").draggable({
         handle: ".winHeader"
@@ -103,7 +103,7 @@ const createBugs = function () {
 }
 
 var createShopContainer = function () {
-    shopContainer.append(createShop());
+    setUpShop();
 }
 
 var hideShop = function () {
