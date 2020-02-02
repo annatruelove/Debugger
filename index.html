@@ -16,6 +16,7 @@
         integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
     <script src="lib/prism/prism.js"></script>
     <script src="code_files/level1.js"></script>
+    <script src="scripts/levelHelper.js"></script>
     <script src="scripts/messageBank.js"></script>
     <script src="scripts/messageUtils.js"></script>
     <script src="scripts/statsUtils.js"></script>
@@ -25,23 +26,38 @@
     <script src="scripts/soundUtils.js"></script>
     <script src="scripts/flowOrchestrator.js"></script>
 
-
-
-
 </head>
 
 <body>
     <audio id="background_music" loop>
         <source src="assets/music/background_music.wav" type="audio/wav">
     </audio>
-    <div id="loginPage" class="login">
+    <div id="loginPage" class="login window">
+        <div class="winHeader">
+            <h1>Welcome to Wondows 69</h1>
+            <img class="winHeaderButt" src="assets/ui/win_buttons_login.png">
+        </div>
+        <div style="float: left; margin: 8px 16px;">
+            <img style="width: 64px; height: 64px;" src="assets/ui/win_login_64.png">
+        </div>
+        <div style="float: left; margin-top: 20px;">
+            <h1 class="logon">Type a user name to log on to Windex.</h1>
+            <br>
+            <br>
+            <u>U</u>ser name: &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="fname"><br>
+            <br>
+        </div>
+        <div style="float: right; margin: 14px 10px;">
+            <button id="loginButt" class="window rec" type="button">OK</button><br>
+            <button id="loginButt" class="window" type="button">Cancel</button>
+        </div>
     </div>
     <div id="rootContainer" class="grid">
         <div id="gameContainer" class="window">
             <div class="winHeader">
                 <img src="assets/ui/win_code_16.png">
                 <h1>Debuggin'</h1>
-                <img class="winHeaderButt" src="assets/ui/win_buttons.png">
+                <img id="gameCloseButton" class="winHeaderButt" src="assets/ui/win_buttons.png">
             </div>
             <div class="winMenu">
                 <div class="winMenuButt">
@@ -65,7 +81,7 @@
         <div class="winHeader">
             <img src="assets/ui/win_mail_16.png">
             <h1>Heelmail</h1>
-            <img class="winHeaderButt" src="assets/ui/win_buttons.png">
+            <img id="messageCloseButton" class="winHeaderButt" src="assets/ui/win_buttons.png">
         </div>
         <div class="winMenu">
             <div class="winMenuButt">
@@ -90,7 +106,7 @@
                 ## Prepend messages to #groupContent
             </div>
         </div>
-        <button id="startDebuggingButton">start debugger</button>
+        <button id="startDebuggingButton" class="window"><u>S</u>tart Debugger</button>
     </div>
     <div id="statsContainer" class="window">
 
@@ -98,7 +114,7 @@
 
             <img src="assets/ui/win_stats_16.png">
             <h1>Stats</h1>
-            <img class="winHeaderButt" src="assets/ui/win_buttons.png">
+            <img id="statsCloseButton" class="winHeaderButt" src="assets/ui/win_buttons.png" >
         </div>
         <div id="statsContent" class="winInner">
 
@@ -140,17 +156,30 @@
             <img src="assets/ui/win_win_16.png">
             Stop
         </div>
-        <div id="codetask" class="miniProgram clicked">
+        <div id="codetask" class="miniProgram">
             <img src="assets/ui/win_code_16.png">
             Debuggin'
         </div>
-        <div id="statstask" class="miniProgram clicked">
+        <div id="statstask" class="miniProgram">
             <img src="assets/ui/win_stats_16.png">
             Stats
         </div>
         <div id="messagestask" class="miniProgram clicked">
             <img src="assets/ui/win_mail_16.png">
             Messages
+        </div>
+    </div>
+
+    <div id="fired" class="login" hidden="true">
+        <div class="winHeader">
+            <h1>ERROR</h1>
+            <img class="winHeaderButt" src="assets/ui/win_buttons.png">
+        </div><br><br>
+        <div style="float: left; width: 20%;">
+            <img style="width: 75px; height: 75px;" src="assets/ui/win_error.jpg">
+        </div>
+        <div style="float: left; width: 50%;">
+            <h1 class="logon">ERROR: You've been fired.</h1><br>
         </div>
     </div>
 </body>

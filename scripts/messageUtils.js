@@ -23,10 +23,12 @@ var createMessage = function (type, message) {
         messageLabel = $('<div class="email"><b>BOSS:</b>  </div>');
         messageLabel.append(message);
         messagesContainerInbox.prepend(messageLabel);
+        messagesContainerInbox.prepend('<hr>');
     } else if (type === "group") {
         messageLabel = $('<div class="group"></div>');
         messageLabel.append(message);
         messagesContainerGroup.prepend(messageLabel);
+        messagesContainerGroup.prepend('<hr>');
     }
 }
 

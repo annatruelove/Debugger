@@ -2,33 +2,41 @@ var rootContainer;
 var gameContainer;
 var messagesContainerInbox;
 var messagesContainerGroup;
+var messagesContainer;
 var statsContainerInner;
 var statsContainer;
+var statsTask;
+var codeTask;
+var messagesTask;
 var loginPage;
 var shopPopUp;
-var bugs = []
-let weGamin = true;
+var bugs = [];
+var weGamin = true;
+var roundNumber = 1;
 
 $(document).ready(() => {
     rootContainer = $('#rootContainer');
     statsContainerInner = $('#statsContainer .winInner');
     statsContainer = $('#statsContainer');
-    messagesContainerInbox = $('#messagesContainer #inboxContent');
+    messagesContainerInbox = $('#inboxContent');
+    messagesContainerGroup = $('#groupContent');
+    messagesContainer = $('#messagesContainer');
     shopContainer = $('#shopPopUp .winInner');
     shopPopUp = $('#shopPopUp');
     gameContainer = $('#gameContainer');
     loginPage = $('#loginPage')
-    createGameScreen();
+    loginButt = $('#loginButt');
+    statsTask = $('#statstask');
+    codeTask = $('#codetask');
+    messagesTask = $('#messagestask')
     createMessagePane();
     createStatsContainer();
-
     // this will be called when a game is over
     createShopContainer();
 
     hideShop(); // use to hide shop
     // showShop(); // use to show shop
 
-    Prism.highlightAll();
     $(".window").draggable({
         handle: ".winHeader"
     });
@@ -37,11 +45,12 @@ $(document).ready(() => {
 
 })
 
-const createGameScreen = function () {
+
+const setLevel = function () {
     let codeContainer = $('#code');
-    codeContainer.append(level1);
-    console.log(gameContainer.height());
-    console.log(codeContainer.height());
+    codeContainer.append(getScript(roundNumber));
+    Prism.highlightAll();
+
 }
 
 
@@ -50,10 +59,18 @@ const startGame = function () {
     var animationOffset = gameContainer.height() - codeContainer.height();
     codeContainer.parent().animate({
         "marginTop": animationOffset + "px"
-    }, 45000, "linear", function () {
-        weGamin = false;
+    }, 20000, "linear", function () {
+        endRound();
     });
     createBugs();
+}
+
+const endRound = function(){
+    weGamin = false;
+    $('.bug').stop();
+    $('.bug').remove();
+    $('#code').parent().stop();
+    showShop();
 }
 
 var createMessagePane = function () {
@@ -74,7 +91,7 @@ const createBugs = function () {
                 gameContainer.append(makeBug());
             }
         },
-        1000);
+        levelSpeed(roundNumber));
 }
 
 var createShopContainer = function () {
@@ -87,4 +104,14 @@ var hideShop = function () {
 
 var showShop = function () {
     shopPopUp.show();
+}
+
+var toggle = function(container, tab) {
+    if (container.is(":visible")) {
+        container.hide();
+        tab.attr("class", "miniProgram");
+    } else {
+        container.show();
+        tab.attr("class", "miniProgram clicked");
+    }
 }
