@@ -15,6 +15,7 @@ const makeBug = function(){
         console.log("we clickin");
         newBug.attr("src","assets/sprites/splat.png")
         newBug.stop();
+        playBackgroundMusic();
         
         newBug.fadeOut("slow", function(){
             // SPLAT, POINT GAINED
