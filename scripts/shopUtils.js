@@ -17,7 +17,7 @@ var createShop = function () {
     ramImg.src = "assets/ui/win_code_16.png";
     div.append(ramImg);
 
-    div.append("Buy More Lives: 1pt/life");
+    div.append("Buy More Lives: 50pts/life");
     var input = document.createElement("INPUT");
     input.setAttribute("type", "number");
     div.append(input);
@@ -60,7 +60,7 @@ var buyLives = function (inputValue) {
         div.append("Insufficient Funds");
     } else {
         userRAM += inputValue * 2;
-        userPts -= inputValue;
+        userPts -= inputValue * 50;
         statsContainer.empty();
         statsContainer.append(updateRAM(0));
         statsContainer.append(updateScore(0));
