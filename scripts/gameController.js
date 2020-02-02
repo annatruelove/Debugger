@@ -4,6 +4,7 @@ var messagesContainerInbox;
 var messagesContainerGroup;
 var statsContainerInner;
 var statsContainer;
+var loginPage;
 var shopPopUp;
 var bugs = []
 let weGamin = true;
@@ -16,6 +17,7 @@ $(document).ready(() => {
     shopContainer = $('#shopPopUp .winInner');
     shopPopUp = $('#shopPopUp');
     gameContainer = $('#gameContainer');
+    loginPage = $('#loginPage')
     createGameScreen();
     createMessagePane();
     createStatsContainer();
@@ -56,7 +58,7 @@ const startGame = function () {
 
 var createMessagePane = function () {
     // initial email box 
-    messagesContainerInbox.prepend(createMessage("email", startEmail));
+    createMessage("email", startEmail);
 }
 
 var createStatsContainer = function () {
