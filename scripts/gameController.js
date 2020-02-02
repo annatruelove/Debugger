@@ -73,9 +73,7 @@ const startGame = function () {
     });
     calcPerformance();
     populateMessage(performance, "beginround");
-    setTimeout(function() {
-        createBugs();
-        },3000)
+    createBugs();
 }
 
 const endRound = function (performance) {
@@ -97,10 +95,7 @@ const endRound = function (performance) {
     })
     populateMessage(performance, "endround");
 
-    setTimeout(function () {
-        showShop();
-    }, 3000)
-
+    showShop();
 }
 
 var createMessagePane = function () {

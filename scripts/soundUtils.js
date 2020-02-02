@@ -13,8 +13,11 @@ var playBackgroundMusic = function () {
 
 var playEmail = function() {
     var music = document.getElementById("email_notif");
-
+    // add flashers
     var promise = music.play();
+    
+    $("#messagesContainer").fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100)
+
     if (promise !== undefined) {
         promise.then(_ => {
             music.play();
@@ -22,6 +25,7 @@ var playEmail = function() {
             console.log(error.name + " " + error.message);
         });
     }
+
 }
 
 var playFanSound = function() {

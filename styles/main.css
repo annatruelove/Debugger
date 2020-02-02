@@ -356,3 +356,10 @@ body {
 .login button.rec {
     box-shadow: 0 0 0 1px black;
 }
+
+#tree {
+    height: 15%;
+    position:absolute;
+    bottom:20px;
+    right:20px;
+}

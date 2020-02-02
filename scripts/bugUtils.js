@@ -54,8 +54,8 @@ const makeFirstBug = function() {
         newBug.fadeOut("slow", function () {
             // SPLAT, POINT GAINED
             newBug.remove();
-            $('#statsContent').empty();
-            $('#statsContent').append(increaseScore())
+            $('#statsContentNew').empty();
+            $('#statsContentNew').append(increaseScore())
             startGame();
         });
 
