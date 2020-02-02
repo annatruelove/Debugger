@@ -63,18 +63,18 @@ const burnItAll = function () {
     $('.bug').remove();
     $('#code').parent().stop();
 
-    throwErrorMessages();
+    setInterval(throwErrorMessages, 50);
 
 }
 
 const throwErrorMessages = function() { 
     var w = window.innerWidth;
     var h = window.innerHeight; 
-    for (let i = 0; i < 50; i++) {
+
         var xOffset = Math.floor(Math.random() * w) + 1;
         var yOffset = Math.floor(Math.random() * h) + 1;
-        $('body').delay(100).append('<img class="endError" style="position: absolute; top: ' + xOffset + 'px; left: ' + yOffset + 'px;" src="assets/ui/win_error_windowww.png"></img>');
-    }
+        $('body').append('<img class="endError" style="position: absolute; top: ' + xOffset + 'px; left: ' + yOffset + 'px;" src="assets/ui/win_error_windowww.png"></img>');
+    
 }
 
 function numberRandomizer(){

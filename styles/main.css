@@ -206,6 +206,10 @@ body {
     background: url(../assets/ui/win_progress.png) left top repeat-x;
 }
 
+#pointsBar .winBarInner {
+    background: #0000aa;
+}
+
 #statsContentNew p {
     margin-bottom: 8px;
 }
