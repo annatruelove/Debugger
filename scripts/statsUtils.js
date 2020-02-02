@@ -8,8 +8,13 @@ var loseLife = function () {
     if (userRAM == 0) {
         // GAME LOSE AREA
         // alert(" YOU LOSE BRUH LEAVEEEEE ");
-        endRound();
-        showShop()
+        if (userPts < 50){
+            alert("insert fire here");
+            endRound();
+        } else{
+            endRound();
+            showShop()    
+        }
     }
     return div;
 }
