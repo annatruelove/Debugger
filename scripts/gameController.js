@@ -29,6 +29,7 @@ const createGameScreen = function () {
 
 var createMessagePane = function () {
     // initial email box 
+    // TODO after toms update, append to the proper place 
     messagesContainer.append(createMessage("email", startEmail));
 }
 
