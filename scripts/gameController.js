@@ -25,6 +25,7 @@ $(document).ready(() => {
     shopPopUp = $('#shopPopUp');
     gameContainer = $('#gameContainer');
     loginPage = $('#loginPage')
+    loginButt = $('#loginButt');
     statsTask = $('#statstask');
     codeTask = $('#codetask');
     messagesTask = $('#messagestask')

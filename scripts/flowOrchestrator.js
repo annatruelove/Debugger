@@ -4,11 +4,13 @@ const runGame = function() {
 
 const startSequence = function() {
 
-    loginPage.click(function() {
+    loginButt.click(function() {
         loginPage.hide();
+        messagesContainer.fadeIn();
     }); 
     setLevel(1)
 
+    messagesContainer.hide()
     gameContainer.hide();
     statsContainer.hide();
 
