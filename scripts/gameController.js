@@ -13,7 +13,10 @@ $(document).ready(() => {
     createGameScreen();
     createMessagePane();
     createStatsContainer();
+
+    // this will be called when a game is over
     createShopContainer();
+
     Prism.highlightAll();
     $(".window").draggable({ handle: ".winHeader" });
 })
