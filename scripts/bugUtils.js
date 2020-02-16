@@ -1,31 +1,65 @@
-const makeBug = function(){
+const makeBug = function () {
     var newBug = $('<img class ="bug" src="assets/sprites/beetle.gif"></img>');
-    
-    newBug.css({top: 700, left: Math.floor(Math.random() * 536), position:'absolute'});
+
+    newBug.css({
+        top: 700,
+        left: Math.floor(Math.random() * 836),
+        position: 'absolute'
+    });
     newBug.animate({
         top: '-60px'
-    }, 5000,"linear", function(){
+    }, 5000, "linear", function () {
         // WASSSSSSUP YA LOST A POINT
         newBug.remove();
-        statsContainer.empty();
-        statsContainer.append(loseLife())
-});
+        $('#statsContentNew').empty();
+        $('#statsContentNew').append(loseLife())
+    });
 
-    newBug.click(function() {
-        console.log("we clickin");
-        newBug.attr("src","assets/sprites/splat.png")
+    newBug.click(function () {
+        newBug.attr("src", "assets/sprites/splat.png")
         newBug.stop();
-        
-        newBug.fadeOut("slow", function(){
+        playBackgroundMusic();
+
+        newBug.fadeOut("slow", function () {
             // SPLAT, POINT GAINED
             newBug.remove();
-            statsContainer.empty();
-            statsContainer.append(increaseScore())
-        }); 
+            $('#statsContentNew').empty();
+            $('#statsContentNew').append(increaseScore())
+        });
 
-        
+
     })
-    
+
     return newBug;
 }
 
+const makeFirstBug = function() {
+    var newBug = $('<img class ="bug" src="assets/sprites/beetle.gif"></img>');
+
+    newBug.css({
+        top: 700,
+        left: 418,
+        position: 'absolute'
+    });
+    newBug.animate({
+        top: '218px'
+    }, 5000, "linear", function(){
+        newBug.attr("src", "assets/sprites/beetle.png")
+    });
+    newBug.click(function(){
+        newBug.attr("src", "assets/sprites/splat.png")
+        newBug.stop();
+        playBackgroundMusic();
+
+        newBug.fadeOut("slow", function () {
+            // SPLAT, POINT GAINED
+            newBug.remove();
+            $('#statsContentNew').empty();
+            $('#statsContentNew').append(increaseScore())
+            startGame();
+        });
+
+    })
+
+    return newBug;
+}

@@ -1,19 +1,30 @@
-var userRAM = 8;
 var userPts = 0;
+var messageCounter = 0;
 
-var loseLife = function() {
+var loseLife = function () {
     let div = $('<div></div>');
     div.append(updateRAM(-2));
     div.append(updateScore(0));
-    if(userRAM == 0) {
+    messageCounter += 1;
+    if (messageCounter % 2 == 0) {
+        calcPerformance();
+        populateMessage(performance, "random");
+    }
+    if (userRAM == 0) {
+        performance = "bad";
         // GAME LOSE AREA
         // alert(" YOU LOSE BRUH LEAVEEEEE ");
-        showShop()
+        if (userPts < 10){
+            burnItAll();
+        } else {
+            endRound(performance);
+            showShop()    
+        }
     }
     return div;
 }
 
-var increaseScore = function(){
+var increaseScore = function () {
     let div = $('<div></div>');
     div.append(updateRAM(0));
     div.append(updateScore(1));
@@ -21,37 +32,33 @@ var increaseScore = function(){
 }
 
 // 8GB max, increments in 2GB, so 4 lives total
-var updateRAM = function(gb){
+var updateRAM = function (gb) {
     userRAM += gb;
 
-    var div = $('<div class="stats"></div>');
-    var ramImg = new Image(75, 50);
-
-
-    if (userRAM == 2){
-        div.append("Memory Remaining: 2GB ");
-        ramImg.src = "assets/stats/2GB.png"
-        div.append(ramImg);
-    } else if (userRAM == 4){
-        div.append("Memory Remaining: 4GB ");
-        ramImg.src = "assets/stats/4GB.png"
-        div.append(ramImg);
-    } else if (userRAM == 6){
-        div.append("Memory Remaining: 6GB ");
-        ramImg.src = "assets/stats/6GB.png"
-        div.append(ramImg);
-    } else if (userRAM >= 8){
-        div.append("Memory Remaining: 8GB ");
-        ramImg.src = "assets/stats/8GB.png"
-        div.append(ramImg);
+    if (userRAM >= 8) {
+        userRAM = 8;
+    } else if (userRAM <= 0) {
+        userRAM = 0;
     }
+
+    var div = $('<div></div>');
+    var percent = Math.floor(userRAM / 8 * 100);
+    var progressBar = $("<div id='memoryBar' class='winInner winBar'></div>");
+    progressBar.append("<div style='width: " + percent + "%' class='winBarInner'></div>");
+
+    div.append(progressBar);
+
+    div.append("<p>Memory remaining: " + userRAM + " GB</p>");
 
     return div;
 }
 
-var updateScore = function(newPts){
+var updateScore = function (newPts) {
     userPts += newPts;
-    var div = $('<div class="stats"></div>');
-    div.append("Points: " + userPts);
+    var div = $('<div></div>');
+    var percent = Math.round(userRAM / 8);
+    var progressBar = "<div id='pointsBar' class='winInner winBar'><div style='width: " + (0.5 * userPts) + "px' class='winBarInner'></div></div>";
+    div.append(progressBar);
+    div.append("<p>Bugs squashed: " + (userPts) + "</p>")
     return div;
 }

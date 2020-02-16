@@ -1,40 +1,85 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Debugger</title>
-    <link rel="icon" 
-      type="image/png" 
-      href="assets/ui/win_code_16.png">
+    <link rel="icon" type="image/png" href="assets/ui/win_code_16.png">
 
     <link href="https://fonts.googleapis.com/css?family=VT323&display=swap" rel="stylesheet">
-    <link href="styles/reset.css" rel="stylesheet" />
-    <link href="lib/prism/prism.css" rel="stylesheet" />
-    <link href="styles/main.css" rel="stylesheet" />
+    <link href="styles/reset.css" rel="stylesheet">
+    <link href="lib/prism/prism.css" rel="stylesheet">
+    <link href="styles/main.css" rel="stylesheet">
+    <link href="styles/shop.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-    <script 
-    src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" 
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
     <script src="lib/prism/prism.js"></script>
     <script src="code_files/level1.js"></script>
+    <script src="scripts/levelHelper.js"></script>
     <script src="scripts/messageBank.js"></script>
     <script src="scripts/messageUtils.js"></script>
     <script src="scripts/statsUtils.js"></script>
     <script src="scripts/shopUtils.js"></script>
     <script src="scripts/bugUtils.js"></script>
     <script src="scripts/gameController.js"></script>
-
+    <script src="scripts/soundUtils.js"></script>
+    <script src="scripts/flowOrchestrator.js"></script>
 
 </head>
 
 <body>
+    <audio id="full_music" loop>
+        <source src="assets/music/vg_theme_main.wav" type="audio/wav">
+    </audio>
+    <audio id="email_notif">
+        <source src="assets/music/email.wav" type="audio/wav">
+    </audio>
+    <audio id="win_music">
+        <source src="assets/music/vg_theme_win.wav" type="audio/wav">
+    </audio>
+
+    <audio id="fans">
+        <source src="assets/music/fans.wav" type="audio/wav">
+    </audio>
+    <audio id="purchase">
+        <source src="assets/music/purchase.wav" type="audio/wav">
+    </audio>
+    <audio id="splat">
+        <source src="assets/music/splat.wav" type="audio/wav">
+    </audio>
+    <audio id="fail">
+        <source src="assets/music/vg_theme_fail.wav" type="audio/wav">
+    </audio>
+    <audio id="intro_music">
+        <source src="assets/music/vg_theme_intro.wav" type="audio/wav">
+    </audio>
+    <div id="loginPage" class="login window">
+        <div class="winHeader">
+            <h1>Welcome to Wondows 69</h1>
+            <img class="winHeaderButt" src="assets/ui/win_buttons_login.png">
+        </div>
+        <div style="float: left; margin: 8px 16px;">
+            <img style="width: 64px; height: 64px;" src="assets/ui/win_login_64.png">
+        </div>
+        <div style="float: left; margin-top: 20px;">
+            <h1 class="logon">Type a user name to log on to Windex.</h1>
+            <br>
+            <br>
+            <u>U</u>ser name: &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="fname"><br>
+            <br>
+        </div>
+        <div style="float: right; margin: 14px 10px;">
+            <button id="loginButt" class="window rec" type="button">OK</button><br>
+            <button id="loginButt" class="window" type="button">Cancel</button>
+        </div>
+    </div>
     <div id="rootContainer" class="grid">
         <div id="gameContainer" class="window">
             <div class="winHeader">
                 <img src="assets/ui/win_code_16.png">
                 <h1>Debuggin'</h1>
-                <img class="winHeaderButt" src="assets/ui/win_buttons.png">
+                <img id="gameCloseButton" class="winHeaderButt" src="assets/ui/win_buttons.png">
             </div>
             <div class="winMenu">
                 <div class="winMenuButt">
@@ -58,7 +103,7 @@
         <div class="winHeader">
             <img src="assets/ui/win_mail_16.png">
             <h1>Heelmail</h1>
-            <img class="winHeaderButt" src="assets/ui/win_buttons.png">
+            <img id="messageCloseButton" class="winHeaderButt" src="assets/ui/win_buttons.png">
         </div>
         <div class="winMenu">
             <div class="winMenuButt">
@@ -80,20 +125,24 @@
             <div class="winInner active" id="inboxContent">
             </div>
             <div class="winInner" id="groupContent">
-                ## Prepend messages to #groupContent
             </div>
         </div>
+        <button id="startDebuggingButton" class="window"><u>S</u>tart Debugger</button>
     </div>
     <div id="statsContainer" class="window">
-
         <div class="winHeader">
-
             <img src="assets/ui/win_stats_16.png">
             <h1>Stats</h1>
-            <img class="winHeaderButt" src="assets/ui/win_buttons.png">
+            <img id="statsCloseButton" class="winHeaderButt" src="assets/ui/win_buttons.png" >
+        </div>
+        <div style="float: left; margin: 16px">
+            <img style="width: 64px; height: 64px;" src="assets/ui/win_defrag_64.png">
+        </div>
+        <div id="statsContentNew">
+            
         </div>
         <div id="statsContent" class="winInner">
-
+            
         </div>
     </div>
     <div id="shopPopUp" class="window">
@@ -104,6 +153,26 @@
             <img class="winHeaderButt" src="assets/ui/win_buttons.png" onclick="hideShop()">
         </div>
         <div id="shopContent" class="winInner">
+            <p class="rainbow-text">Congratulations, You're Today's Lucky Winner!</p>
+            <p>Use your points to purchase an upgrade below:</p>
+            <div id="swatterItem" class="shopItem">
+                <div class="imgContainer">
+                    <img class="shopImg" src="assets/sprites/swatter.png">
+                </div>
+                <div class="shopDesc">10pts<br>Fly Swatter</div>
+            </div>
+            <div id="sprayItem" class="shopItem">
+                <img class="shopImg" src="assets/sprites/spraycan.png">
+                <div class="shopDesc">20pts<br>Bug Spray</div>
+            </div>
+            <div id="livesItem" class="shopItem">
+                <img class="shopImg" src="assets/sprites/battery.png">
+                <div class="shopDesc">50pts<br>Download RAM</div>
+            </div>
+            <div id="plantItem" class="shopItem">
+                <img class="shopImg" src="assets/sprites/plant_icon.png">
+                <div class="shopDesc">100pts<br>Desk Plant</div>
+            </div>
         </div>
 
     </div>
@@ -120,11 +189,24 @@
             <img src="assets/ui/win_stats_16.png">
             Stats
         </div>
-        <div id="messagestask" class="miniProgram">
+        <div id="messagestask" class="miniProgram clicked">
             <img src="assets/ui/win_mail_16.png">
             Messages
         </div>
     </div>
+    <div id="win" class="login window" hidden="true">
+        <div class="winHeader">
+            <h1>You Win!</h1>
+            <img class="winHeaderButt" src="assets/ui/win_buttons_login.png">
+        </div>
+        <div style="float: left; margin: 8px 16px;">
+            <img style="width: 64px; height: 64px;" src="assets/ui/win_win_16.png">
+        </div>
+        <div style="float: left; margin-top: 20px;">
+            <h1 class="logon">Congratulations, you get a return offer to Macrosoft!</h1>
+        </div>
+    </div>
+
 </body>
 
 </html>
